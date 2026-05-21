@@ -1,0 +1,7 @@
+# Confidential interview materials
+*.pdf
+pdf_images/
+Case Study Data*
+
+# Local Claude dev config
+.claude/
