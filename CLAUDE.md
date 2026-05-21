@@ -126,6 +126,10 @@ Always confirm before:
 
 For everything else (adding/editing use-case content, styling fixes within the locked system, bug fixes, copy edits), proceed without asking.
 
+### End-of-session push
+
+At the end of every session (when running the wrap ritual), commit any pending changes to `prototype/index.html`, `docs/`, and `CLAUDE.md`, then push to `origin main`. Use a descriptive commit message summarizing what changed. Do not push mid-session — only on wrap.
+
 ### Conflict resolution
 
 Surface conflicts explicitly. Name the specific locked decision being violated and offer two paths: (a) update the lock deliberately, or (b) solve within the existing constraints.
@@ -159,6 +163,7 @@ All 4 screens complete and validated on iPhone 13 viewport (390×844). Prototype
 
 ### Snippets / reference URLs for this phase
 
+- GitHub repo: `https://github.com/rypeugh/Hometap_Pre-Qualification_Prototype`
 - Preview server: `npx serve prototype -p 3333` → open `http://localhost:3333`
 
 ---
