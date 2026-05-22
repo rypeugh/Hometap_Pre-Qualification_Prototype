@@ -13,7 +13,7 @@
 - **Primary goal:** Prove the hypothesis that inserting a personalized education step — showing how a Home Equity Investment (HEI) compares to a HELOC or Home Equity Loan for the user's specific goal — will increase conversion from site visit to pre-qual start.
 - **Target user (of the prototype):** Hometap interviewers evaluating Ryan Peugh for Principal PM, Growth. The prototype must be immediately legible without explanation.
 - **Target user (of the product being modeled):** Homeowners aged 35–65 exploring equity access options. Low financial literacy on HEIs specifically. Likely familiar with HELOCs from advertising. Middle-income, suburban/exurban.
-- **Success looks like:** A reviewer clicks through all 4 screens, immediately understands the hypothesis, and sees how the education layer slots into Hometap's existing pre-qual funnel without disrupting it.
+- **Success looks like:** A reviewer clicks through the full education and pre-qual flow, immediately understands the hypothesis, and sees how the education layer slots into Hometap's existing funnel without disrupting it.
 - **Out of scope:** Real backend, auth, API calls, actual pre-qualification submission, admin dashboard, mobile app, slide deck.
 
 ---
@@ -27,21 +27,38 @@ The case study identified three funnel stages:
 2. Pre-qual start ← **biggest drop: ~70% of visitors never start**
 3. Pre-qual completion → approval → settlement
 
-This prototype intervenes **between stage 1 and 2** by inserting a 3-screen education wizard before the existing pre-qual form. Screen 4 (Pre-Qual Entry) is a mockup of Hometap's actual pre-qual form, pre-populated based on the user's chosen use case.
+This prototype intervenes **between stage 1 and 2** by inserting a 3-screen education wizard that flows directly into a full pre-qual sequence. The flow is 17 screens + 1 exit screen, in two phases:
 
-The 4 screens in order:
-1. **Use Case Selector** — "What would you like to do with your home equity?" (6 options matching Hometap's homepage nav labels)
-2. **Comparison Table** — HEI vs. HELOC vs. Home Equity Loan, with rows dynamically highlighted for the selected use case
-3. **Benefits Summary** — 3 benefit cards + a customer quote, personalized to use case
-4. **Pre-Qual Entry** — mockup of Hometap's pre-qual form, with "reason for equity access" dropdown pre-selected
+**Education phase (Screens 1–3):**
+1. **Use Case Selector** — 6 options, auto-advances on tap
+2. **Comparison Table** — HEI vs. HELOC vs. Home Equity Loan, personalized by use case
+3. **Benefits Summary** — 3 benefit cards + customer quote
+
+**Pre-qual phase (Screens 4–17 + exit):**
+4. **Interstitial** — "Access your home equity with no monthly payment"
+5. **Use case confirmation** — pre-filled from Screen 1, changeable
+6. **Amount range selector**
+7. **Urgency selector** — stored for Screen 17 callback copy
+8. **Education statement** — HEI vs. HELOC monthly payment comparison
+9. **HEI interstitial** — Laura quote + dark hero
+10. **Address entry** — mock autocomplete
+11. **Property type** — "Investment property" routes to exit screen
+12. **Estimated debt entry**
+13. **Name**
+14. **Phone + TCPA disclaimer**
+15. **Email**
+16. **Loading animation** — auto-advances after ~3.4s
+17. **Results** — dynamic amount + urgency-reactive callback copy
+
+**Exit screen:** Investment property ineligible — graceful dead-end with return home.
 
 ### Tech stack
 
 - **Frontend:** Single-file `prototype/index.html` — all HTML, CSS, and JS in one file
 - **Styling approach:** Plain CSS with CSS custom properties (variables) for all design tokens; no Tailwind, no framework
 - **JavaScript:** Vanilla JS only; no build step, no npm, no modules
-- **Backend / data:** None — all content is hardcoded in a JS data object keyed by use case
-- **State management:** Single `selectedKey` variable; screen navigation via `goTo(n)` function
+- **Backend / data:** None — all content is hardcoded in JS objects
+- **State variables:** `selectedKey` (use case), `selectedAmount`, `selectedUrgency`, `userAddress`, `userDebt`, `userFirstName`, `userLastName`, `userPhone`, `userEmail`, `qualifiedAmount`. Navigation via `goTo(n)` + `goToExit()`.
 - **Hosting:** Open `prototype/index.html` directly in a browser; or via `npx serve prototype` on port 3333
 - **Build step:** None
 
@@ -88,11 +105,11 @@ These are binding for every screen. Apply before writing or editing any copy or 
 
 3. **Copy concise and scannable.** Use plain, direct language. Lead with the most important word. Avoid filler phrases like "Here's how," "Based on your goal," or "We'll show you."
 
-4. **Single-select auto-advances.** Tapping a use case option on Screen 1 auto-navigates to Screen 2 after 280ms (enough for visual confirmation). No separate "Continue" button on selection screens. Do not add a confirm step.
+4. **Single-select auto-advances.** Screens 1, 5, 6, 7, and 11 auto-advance on tap after 280ms (enough for visual confirmation). No separate "Continue" button on any selection screen. Do not add a confirm step.
 
-5. **Progress indicator is a single full-width thin line** (`3px`, `--primary` fill, `--primary-mid` track). No step dots, no labels. Advances proportionally across 4 screens. Nav is logo left + Log in right — no CTA, no extra elements.
+5. **Progress indicator is a single full-width thin line** (`3px`, `--primary` fill, `--primary-mid` track). No step dots, no labels. Advances proportionally across all 17 screens. Nav is logo left + Log in right — no CTA, no extra elements.
 
-6. **CTAs always above the fold on mobile.** Reference device: iPhone 13 (390 × 844 CSS px). On screens 2, 3, and 4, the primary CTA uses `position: fixed; bottom: 0` on mobile via the `.screen-cta` wrapper class. Screen container gets `padding-bottom: 120px` on mobile to prevent content hiding behind the bar. Screen 1 has no CTA — selection auto-advances.
+6. **CTAs always above the fold on mobile.** Reference device: iPhone 13 (390 × 844 CSS px). On all screens with a CTA (Screens 2, 3, 8, 9, 10, 12, 13, 14, 15), the primary CTA uses `position: fixed; bottom: 0` on mobile via the `.screen-cta` wrapper class. Screen container gets `padding-bottom: 120px` on mobile to prevent content hiding behind the bar.
 
 ---
 
@@ -117,7 +134,7 @@ These are binding for every screen. Apply before writing or editing any copy or 
 
 Always confirm before:
 
-- Adding a new screen beyond the 4 defined
+- Adding a new screen beyond the 17 defined
 - Changing the use case option labels (they must match Hometap's homepage)
 - Changing any hex color in Section 2
 - Splitting `index.html` into multiple files
@@ -140,26 +157,30 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ### What I'm building right now
 
-All 4 screens complete and validated on iPhone 13 viewport (390×844). Prototype is demo-ready.
+Full 17-screen pre-qualification flow complete (Screens 1–17 + investment property exit screen). Education flow (Screens 1–3) feeds directly into pre-qual flow (Screens 4–17) — Screen 4 is now the interstitial, not the old pre-qual form mockup. Prototype is demo-ready end-to-end.
 
 ### Known issues / things on fire
 
-- None. Logo stored locally at `prototype/hometap-logo.svg` — no CDN dependency.
+- Not yet validated on iPhone 13 viewport (390×844) — do a manual scroll check on Screens 9 (dark hero) and 17 (results) before demo.
+- Loading screen (Screen 16) resets if you navigate back via browser — acceptable for prototype, worth noting if demoed on a fresh load each time.
 
 ### Open questions / decisions pending
 
 - Should the comparison table include a "Learn more" expandable row per option, or keep it flat?
-- Are 6 use cases the right number, or should some be consolidated for demo clarity?
-- Does the pre-qual screen (Screen 4) need more form fields to feel realistic?
 
 ### Recent changes worth remembering
 
-- Icons: all emojis replaced with Font Awesome Free 6.7.2 (cdnjs). Icon classes stored in `useCases` data object, rendered as `<i class="fa-solid fa-..."></i>`.
-- Nav: white background, logo left, Log in right, no CTA — matches Hometap mobile app.
-- Progress: single full-width thin line only, no step dots or labels.
+- Flow expanded from 4 → 17 screens + exit. Screen 4 is now the interstitial ("Access your home equity with no monthly payment").
+- New state variables: `selectedAmount`, `selectedUrgency`, `userAddress`, `userDebt`, `userFirstName`, `userLastName`, `userPhone`, `userEmail`, `qualifiedAmount`.
+- Screen 5 pre-selects the use case from Screen 1; user can change it.
+- Screens 5, 6, 7, 11 auto-advance on tap (280ms) — same pattern as Screen 1.
+- Screen 11: "Investment property" routes to exit screen; primary/secondary continue to Screen 12.
+- Screen 16 loading animates 3 items sequentially, then auto-advances to results.
+- Screen 17 result amount = mock Zillow estimate − debt × 20%, capped at $600K.
+- Screen 17 callback copy is urgency-reactive: "5 minutes" if Today/Within a week; "1 business day" otherwise.
+- Screen 14 includes TCPA disclaimer (locked — do not remove).
+- Education statement on Screen 8 replaced the yes/no monthly payment question.
 - Purple (`#6A5CF7`) is heading accent, NOT a CTA color. Blue (`#366CED`) for buttons/links.
-- Screen 1 auto-advances to Screen 2 after 280ms on selection — no Continue button.
-- CTAs on Screens 2, 3, 4 use `position: fixed; bottom: 0` on mobile via `.screen-cta` class.
 
 ### Snippets / reference URLs for this phase
 
@@ -180,4 +201,4 @@ All 4 screens complete and validated on iPhone 13 viewport (390×844). Prototype
 
 ---
 
-*Last updated: 2026-05-21 (session 3)*
+*Last updated: 2026-05-21 (session 4)*

@@ -10,22 +10,21 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Sourced from Hometap homepage source code */
-      --primary:         #366CED; /* bg-primary100 — CTA buttons, links */
-      --primary-hover:   #2453C9; /* bg-blue300 — hover state */
-      --primary-active:  #1A3FA8; /* bg-blue500 — active state */
-      --primary-light:   #EEF2FF; /* bg-primary5/blue5 — light bg */
-      --primary-mid:     #D2DFFC; /* bg-primary15 — subtle dividers */
-      --purple:          #6A5CF7; /* text-purple200 — HERO accent, headings */
-      --purple-dark:     #3D31C8; /* purple400 — footer/dark sections */
-      --purple-section:  #2D2480; /* purple500 — deep section bg */
-      --text:            #434C5E; /* neutral500 — body text (from SVG stroke) */
-      --text-sub:        #6B7585; /* neutral400 — secondary text */
-      --text-light:      #9CA5B0; /* neutral300 */
-      --border:          #DDE3EC; /* neutral30 — borders */
+      --primary:         #366CED;
+      --primary-hover:   #2453C9;
+      --primary-active:  #1A3FA8;
+      --primary-light:   #EEF2FF;
+      --primary-mid:     #D2DFFC;
+      --purple:          #6A5CF7;
+      --purple-dark:     #3D31C8;
+      --purple-section:  #2D2480;
+      --text:            #434C5E;
+      --text-sub:        #6B7585;
+      --text-light:      #9CA5B0;
+      --border:          #DDE3EC;
       --bg:              #FFFFFF;
-      --nav-bg:          #EEF2FF; /* bg-primary5 — nav background */
-      --card-bg:         #F5F8FF; /* card / selected state bg */
+      --nav-bg:          #EEF2FF;
+      --card-bg:         #F5F8FF;
       --success:         #16A34A;
       --success-bg:      #F0FDF4;
       --warn:            #DC2626;
@@ -47,63 +46,27 @@
     }
 
     /* ── NAV ─────────────────────────────────────────────── */
-    .nav {
-      background: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+    .nav { background: #fff; position: sticky; top: 0; z-index: 100; }
     .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 24px;
-      max-width: 1280px;
-      margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; max-width: 1280px; margin: 0 auto;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
+    .logo { display: flex; align-items: center; text-decoration: none; }
     .logo img { height: 32px; width: auto; display: block; }
-    .nav-login {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--primary);
-      text-decoration: none;
-    }
+    .nav-login { font-size: 15px; font-weight: 600; color: var(--primary); text-decoration: none; }
     .nav-login:hover { text-decoration: underline; }
 
     /* ── PROGRESS ────────────────────────────────────────── */
-    .progress-wrap {
-      width: 100%;
-    }
-    .progress-bar-track {
-      height: 3px;
-      background: var(--primary-mid);
-      overflow: hidden;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--primary);
-      transition: width 0.4s ease;
-    }
+    .progress-wrap { width: 100%; }
+    .progress-bar-track { height: 3px; background: var(--primary-mid); overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--primary); transition: width 0.4s ease; }
 
     /* ── SCREEN CONTAINER ────────────────────────────────── */
     .screen-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 20px 72px;
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; padding: 32px 20px 72px;
     }
-    .screen {
-      display: none;
-      width: 100%;
-      max-width: 580px;
-      animation: fadeUp 0.28s ease;
-    }
+    .screen { display: none; width: 100%; max-width: 580px; animation: fadeUp 0.28s ease; }
     .screen.active { display: block; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
@@ -113,450 +76,390 @@
     /* ── TYPOGRAPHY ──────────────────────────────────────── */
     .serif { font-family: 'Playfair Display', serif; }
     .screen-eyebrow {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--purple);
-      text-transform: uppercase;
-      letter-spacing: 0.9px;
-      margin-bottom: 10px;
+      font-size: 12px; font-weight: 600; color: var(--purple);
+      text-transform: uppercase; letter-spacing: 0.9px; margin-bottom: 10px;
     }
     .screen-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 30px;
-      font-weight: 700;
-      line-height: 1.25;
-      color: var(--text);
-      margin-bottom: 8px;
+      font-family: 'Playfair Display', serif; font-size: 30px;
+      font-weight: 700; line-height: 1.25; color: var(--text); margin-bottom: 8px;
     }
     .screen-title .accent { color: var(--purple); }
-    .screen-sub {
-      font-size: 16px;
-      color: var(--text-sub);
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
+    .screen-sub { font-size: 16px; color: var(--text-sub); line-height: 1.6; margin-bottom: 32px; }
 
     /* ── BUTTONS ─────────────────────────────────────────── */
     .btn-primary {
-      display: block;
-      width: 100%;
-      padding: 16px 24px;
-      background: var(--primary);
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      border: none;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      text-align: center;
-      transition: background 0.15s;
-      margin-top: 8px;
+      display: block; width: 100%; padding: 16px 24px; background: var(--primary);
+      color: #fff; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700;
+      border: none; border-radius: var(--radius-sm); cursor: pointer; text-align: center;
+      transition: background 0.15s; margin-top: 8px;
     }
     .btn-primary:hover { background: var(--primary-hover); }
     .btn-primary:active { background: var(--primary-active); }
-    .btn-primary:disabled {
-      background: #C5CFE6;
-      cursor: not-allowed;
-    }
+    .btn-primary:disabled { background: #C5CFE6; cursor: not-allowed; }
     .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 24px;
-      border: 1.5px solid var(--primary);
-      color: var(--primary);
-      background: transparent;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-      text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 24px; border: 1.5px solid var(--primary); color: var(--primary);
+      background: transparent; font-family: 'DM Sans', sans-serif; font-size: 15px;
+      font-weight: 700; border-radius: var(--radius-sm); cursor: pointer;
+      transition: background 0.15s, color 0.15s; text-decoration: none;
     }
     .btn-outline:hover { background: var(--primary); color: #fff; }
     .btn-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-sub);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 6px; font-size: 14px;
+      font-weight: 500; color: var(--text-sub); background: none; border: none;
+      cursor: pointer; padding: 0; margin-bottom: 24px;
     }
     .btn-back:hover { color: var(--text); }
 
-    /* ── SCREEN 1: USE CASE SELECTOR ─────────────────────── */
-    .use-case-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
+    /* ── USE CASE SELECTOR (Screen 1) ───────────────────── */
+    .use-case-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
     .use-case-card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 15px 18px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      cursor: pointer;
-      background: var(--bg);
-      transition: border-color 0.15s, background 0.15s;
-      user-select: none;
+      display: flex; align-items: center; gap: 14px; padding: 15px 18px;
+      border: 1.5px solid var(--border); border-radius: var(--radius); cursor: pointer;
+      background: var(--bg); transition: border-color 0.15s, background 0.15s; user-select: none;
     }
     .use-case-card:hover { border-color: var(--primary); }
-    .use-case-card.selected {
-      border-color: var(--primary);
-      background: var(--card-bg);
-    }
+    .use-case-card.selected { border-color: var(--primary); background: var(--card-bg); }
     .uc-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      background: var(--primary-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 10px; background: var(--primary-light);
+      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
     }
     .uc-text { flex: 1; }
     .uc-name { font-size: 15px; font-weight: 600; }
     .uc-desc { font-size: 13px; color: var(--text-sub); margin-top: 2px; line-height: 1.4; }
     .uc-radio {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s;
+      width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s;
     }
-    .use-case-card.selected .uc-radio {
-      background: var(--primary);
-      border-color: var(--primary);
-    }
+    .use-case-card.selected .uc-radio { background: var(--primary); border-color: var(--primary); }
     .uc-check { display: none; color: #fff; font-size: 12px; font-weight: 800; }
     .use-case-card.selected .uc-check { display: block; }
 
-    /* ── SCREEN 2: COMPARISON ────────────────────────────── */
+    /* ── COMPARISON TABLE (Screen 2) ─────────────────────── */
     .insight-box {
-      background: var(--card-bg);
-      border: 1px solid var(--primary-mid);
-      border-left: 3px solid var(--purple);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      font-size: 14px;
-      color: var(--text);
-      line-height: 1.6;
-      margin-bottom: 22px;
+      background: var(--card-bg); border: 1px solid var(--primary-mid);
+      border-left: 3px solid var(--purple); border-radius: var(--radius);
+      padding: 14px 16px; font-size: 14px; color: var(--text); line-height: 1.6; margin-bottom: 22px;
     }
     .insight-box strong { color: var(--purple); }
-
     .comp-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: 24px;
+      width: 100%; border-collapse: collapse; border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; margin-bottom: 24px;
     }
     .comp-table th {
-      padding: 13px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      text-align: center;
-      background: var(--card-bg);
-      border-bottom: 1px solid var(--border);
-      color: var(--text);
+      padding: 13px 12px; font-size: 13px; font-weight: 700; text-align: center;
+      background: var(--card-bg); border-bottom: 1px solid var(--border); color: var(--text);
     }
     .comp-table th:first-child { text-align: left; }
-    .th-hei {
-      background: var(--primary) !important;
-      color: #fff !important;
-      position: relative;
-    }
+    .th-hei { background: var(--primary) !important; color: #fff !important; position: relative; }
     .th-hei-sub {
-      display: block;
-      font-size: 10px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.75);
-      margin-top: 2px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      display: block; font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.75);
+      margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px;
     }
     .comp-table td {
-      padding: 12px 12px;
-      font-size: 13.5px;
-      text-align: center;
-      color: var(--text-sub);
-      border-bottom: 1px solid var(--border);
+      padding: 12px 12px; font-size: 13.5px; text-align: center;
+      color: var(--text-sub); border-bottom: 1px solid var(--border);
     }
     .comp-table tr:last-child td { border-bottom: none; }
-    .comp-table td:first-child {
-      text-align: left;
-      font-weight: 500;
-      color: var(--text);
-      font-size: 13px;
-    }
-    .td-hei {
-      background: var(--card-bg);
-      color: var(--primary) !important;
-      font-weight: 600 !important;
-    }
-    .win-row .td-hei {
-      background: var(--primary-light);
-    }
+    .comp-table td:first-child { text-align: left; font-weight: 500; color: var(--text); font-size: 13px; }
+    .td-hei { background: var(--card-bg); color: var(--primary) !important; font-weight: 600 !important; }
+    .win-row .td-hei { background: var(--primary-light); }
     .chk { color: var(--success); font-weight: 700; font-size: 15px; }
     .dash { color: var(--border); font-size: 16px; }
     .win-badge {
-      font-size: 10px;
-      background: var(--purple);
-      color: white;
-      padding: 1px 6px;
-      border-radius: 99px;
-      font-weight: 600;
-      margin-left: 4px;
-      vertical-align: middle;
+      font-size: 10px; background: var(--purple); color: white; padding: 1px 6px;
+      border-radius: 99px; font-weight: 600; margin-left: 4px; vertical-align: middle;
     }
-
-    .stat-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
+    .stat-row { display: flex; gap: 10px; margin-bottom: 24px; }
     .stat-card {
-      flex: 1;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 12px;
-      text-align: center;
+      flex: 1; background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 12px; text-align: center;
     }
     .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--primary);
-      display: block;
+      font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700;
+      color: var(--primary); display: block;
     }
-    .stat-label {
-      font-size: 11.5px;
-      color: var(--text-sub);
-      margin-top: 4px;
-      line-height: 1.4;
-    }
+    .stat-label { font-size: 11.5px; color: var(--text-sub); margin-top: 4px; line-height: 1.4; }
 
-    /* ── SCREEN 3: BENEFITS ──────────────────────────────── */
+    /* ── BENEFITS (Screen 3) ─────────────────────────────── */
     .benefit-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--card-bg);
-      border: 1px solid var(--primary-mid);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 99px;
-      margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 6px; background: var(--card-bg);
+      border: 1px solid var(--primary-mid); color: var(--primary); font-size: 13px;
+      font-weight: 600; padding: 5px 12px; border-radius: 99px; margin-bottom: 24px;
     }
-    .benefits-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
+    .benefits-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
     .benefit-card {
-      display: flex;
-      gap: 14px;
-      padding: 18px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      display: flex; gap: 14px; padding: 18px; background: var(--card-bg);
+      border: 1px solid var(--border); border-radius: var(--radius);
     }
     .benefit-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
     .benefit-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
     .benefit-desc { font-size: 14px; color: var(--text-sub); line-height: 1.55; }
-
-    .quote-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 24px;
-    }
-    .quote-mark {
-      color: var(--purple);
-      font-size: 28px;
-      font-family: Georgia, serif;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-    .quote-text {
-      font-size: 15px;
-      color: var(--text);
-      line-height: 1.65;
-      margin-bottom: 14px;
-      font-style: italic;
-    }
+    .quote-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; }
+    .quote-mark { color: var(--purple); font-size: 28px; font-family: Georgia, serif; line-height: 1; margin-bottom: 10px; }
+    .quote-text { font-size: 15px; color: var(--text); line-height: 1.65; margin-bottom: 14px; font-style: italic; }
     .quote-attribution { font-size: 13px; font-weight: 600; color: var(--text); }
     .quote-location { font-size: 13px; color: var(--text-sub); }
     .tp-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 6px; margin-top: 12px;
+      padding-top: 12px; border-top: 1px solid var(--border);
     }
     .tp-logo { font-size: 12px; font-weight: 700; color: #00B67A; }
     .tp-stars { color: #00B67A; font-size: 12px; letter-spacing: 1px; }
     .tp-score { font-size: 12px; color: var(--text-sub); }
+    .tp-footer {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 20px; font-size: 13px; color: var(--text-sub);
+    }
 
-    /* ── SCREEN 4: PRE-QUAL ──────────────────────────────── */
-    .prequal-header-block {
-      background: var(--nav-bg);
-      border: 1px solid var(--primary-mid);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .prequal-tag-icon { font-size: 22px; }
-    .prequal-tag-text { font-size: 13px; font-weight: 600; color: var(--primary); }
-    .prequal-tag-sub { font-size: 12px; color: var(--text-sub); margin-top: 2px; }
-
-    .prequal-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: var(--shadow-card);
-    }
-    .prequal-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-    .prequal-sub {
-      font-size: 14px;
-      color: var(--text-sub);
-      margin-bottom: 28px;
-      line-height: 1.6;
-    }
+    /* ── FORM ELEMENTS (shared) ──────────────────────────── */
     .form-group { margin-bottom: 18px; }
     .form-label {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-sub);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
+      display: block; font-size: 12px; font-weight: 600; color: var(--text-sub);
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
     }
     .form-input {
-      width: 100%;
-      padding: 13px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.15s;
+      width: 100%; padding: 13px 14px; border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif;
+      font-size: 15px; color: var(--text); outline: none; transition: border-color 0.15s;
     }
     .form-input:focus { border-color: var(--primary); }
     .form-input::placeholder { color: var(--text-light); }
-    .form-select {
-      width: 100%;
-      padding: 13px 36px 13px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      color: var(--text);
-      appearance: none;
-      outline: none;
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7585' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-    }
-    .form-select.prepopulated {
-      background-color: var(--card-bg);
-      border-color: var(--primary);
-      color: var(--primary);
-      font-weight: 500;
-    }
-    .field-hint {
-      font-size: 12px;
-      color: var(--primary);
-      margin-top: 5px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
     .row-2 { display: flex; gap: 12px; }
     .row-2 .form-group { flex: 1; }
-    .divider { height: 1px; background: var(--border); margin: 20px 0; }
     .privacy-note {
-      display: flex;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-sub);
-      margin-top: 16px;
-      line-height: 1.6;
+      display: flex; gap: 8px; font-size: 12px; color: var(--text-sub);
+      margin-top: 16px; line-height: 1.6;
     }
     .privacy-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-    .uc-icon i { color: var(--primary); }
-    .benefit-icon i { color: var(--primary); }
-    .prequal-tag-icon i { color: var(--primary); }
-    .benefit-tag i { color: var(--primary); }
-    .privacy-icon i { color: var(--text-sub); }
-    .tp-footer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 20px;
-      font-size: 13px;
-      color: var(--text-sub);
+
+    /* ── CHOICE CARDS (Screens 5,6,7,11) ────────────────── */
+    .choice-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .choice-card {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 18px; border: 1.5px solid var(--border); border-radius: var(--radius);
+      cursor: pointer; background: var(--bg); transition: border-color 0.15s, background 0.15s;
+      user-select: none; font-size: 15px; font-weight: 500;
+    }
+    .choice-card:hover { border-color: var(--primary); background: var(--card-bg); }
+    .choice-card.selected { border-color: var(--primary); background: var(--card-bg); color: var(--primary); font-weight: 600; }
+    .choice-card .choice-icon {
+      width: 40px; height: 40px; border-radius: 8px; background: var(--primary-light);
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+      flex-shrink: 0; color: var(--primary); margin-right: 14px;
+    }
+    .choice-left { display: flex; align-items: center; }
+    .choice-radio {
+      width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+    }
+    .choice-card.selected .choice-radio { background: var(--primary); border-color: var(--primary); }
+    .choice-check { display: none; color: #fff; font-size: 11px; font-weight: 800; }
+    .choice-card.selected .choice-check { display: block; }
+
+    /* ── SCREEN 4: INTERSTITIAL ──────────────────────────── */
+    .interstitial-hero {
+      background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+      border: 1px solid var(--primary-mid); border-radius: var(--radius-xl);
+      padding: 32px 28px; margin-bottom: 28px; text-align: center;
+    }
+    .interstitial-hero .hero-icon {
+      width: 64px; height: 64px; border-radius: 16px; background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 28px; color: #fff;
+    }
+    .interstitial-hero h2 {
+      font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700;
+      line-height: 1.3; color: var(--text); margin-bottom: 10px;
+    }
+    .interstitial-hero h2 .accent { color: var(--purple); }
+    .interstitial-hero p { font-size: 15px; color: var(--text-sub); line-height: 1.6; }
+    .steps-row {
+      display: flex; align-items: center; gap: 0; margin-bottom: 28px; padding: 0 8px;
+    }
+    .step-item { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+    .step-circle {
+      width: 48px; height: 48px; border-radius: 50%; background: var(--primary-light);
+      border: 2px solid var(--primary-mid); display: flex; align-items: center;
+      justify-content: center; font-size: 18px; color: var(--primary);
+    }
+    .step-label { font-size: 12px; font-weight: 600; color: var(--text-sub); text-align: center; }
+    .step-connector { flex: 1; height: 2px; background: var(--primary-mid); margin-bottom: 22px; }
+
+    /* ── SCREEN 8: EDUCATION STATEMENT ──────────────────── */
+    .edu-card {
+      background: var(--card-bg); border: 1px solid var(--primary-mid);
+      border-radius: var(--radius-xl); padding: 28px 24px; margin-bottom: 24px;
+    }
+    .edu-card .edu-icon {
+      width: 52px; height: 52px; border-radius: 12px; background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: #fff; margin-bottom: 18px;
+    }
+    .edu-headline {
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+      line-height: 1.35; color: var(--text); margin-bottom: 20px;
+    }
+    .edu-headline .accent { color: var(--purple); }
+    .edu-compare { display: flex; flex-direction: column; gap: 8px; }
+    .edu-compare-item {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+      border-radius: var(--radius-sm); font-size: 14px; font-weight: 500;
+    }
+    .edu-compare-item.bad { background: #FEF2F2; color: var(--warn); }
+    .edu-compare-item.bad i { color: var(--warn); }
+    .edu-compare-item.good { background: var(--success-bg); color: var(--success); font-weight: 700; }
+    .edu-compare-item.good i { color: var(--success); }
+
+    /* ── SCREEN 9: HEI INTERSTITIAL ─────────────────────── */
+    .hei-hero {
+      background: var(--purple-section); border-radius: var(--radius-xl);
+      padding: 32px 24px; margin-bottom: 24px; color: #fff;
+    }
+    .hei-hero-eyebrow {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,0.65); margin-bottom: 12px;
+    }
+    .hei-hero h2 {
+      font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700;
+      line-height: 1.3; color: #fff; margin-bottom: 12px;
+    }
+    .hei-hero p { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+    .hei-quote {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; margin-bottom: 24px;
+    }
+
+    /* ── SCREEN 10: ADDRESS ──────────────────────────────── */
+    .address-wrap { position: relative; margin-bottom: 18px; }
+    .autocomplete-list {
+      position: absolute; top: 100%; left: 0; right: 0; background: #fff;
+      border: 1.5px solid var(--primary); border-top: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      z-index: 50; display: none;
+    }
+    .autocomplete-list.open { display: block; }
+    .autocomplete-item {
+      padding: 12px 14px; font-size: 14px; color: var(--text); cursor: pointer;
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px;
+    }
+    .autocomplete-item:last-child { border-bottom: none; }
+    .autocomplete-item:hover { background: var(--card-bg); }
+    .autocomplete-item i { color: var(--text-light); font-size: 13px; }
+
+    /* ── SCREEN 12: DEBT INPUT ───────────────────────────── */
+    .input-prefix-wrap { position: relative; }
+    .input-prefix {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      font-size: 16px; font-weight: 600; color: var(--text-sub); pointer-events: none;
+    }
+    .input-with-prefix { padding-left: 28px !important; }
+    .field-hint { font-size: 12px; color: var(--text-sub); margin-top: 6px; line-height: 1.5; }
+
+    /* ── LOADING SCREEN (Screen 16) ──────────────────────── */
+    .loading-header { text-align: center; margin-bottom: 32px; }
+    .loading-spinner-wrap {
+      width: 64px; height: 64px; border-radius: 50%; background: var(--primary-light);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+    }
+    .spinner {
+      width: 32px; height: 32px; border: 3px solid var(--primary-mid);
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-items { display: flex; flex-direction: column; gap: 0; }
+    .loading-item {
+      display: flex; align-items: center; gap: 14px; padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .loading-item.visible { opacity: 1; transform: translateY(0); }
+    .loading-item:last-child { border-bottom: none; }
+    .loading-dot {
+      width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      transition: all 0.35s ease; font-size: 14px;
+    }
+    .loading-dot.done { background: var(--success); border-color: var(--success); color: #fff; }
+    .loading-dot.active { border-color: var(--primary); }
+    .loading-item-text { font-size: 14px; color: var(--text-sub); font-weight: 500; }
+    .loading-item.done-item .loading-item-text { color: var(--text); }
+
+    /* ── RESULTS SCREEN (Screen 17) ──────────────────────── */
+    .result-hero {
+      background: linear-gradient(135deg, var(--purple-section) 0%, var(--purple-dark) 100%);
+      border-radius: var(--radius-xl); padding: 36px 28px; text-align: center; margin-bottom: 24px;
+    }
+    .result-eyebrow {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      color: rgba(255,255,255,0.65); margin-bottom: 12px;
+    }
+    .result-label { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .result-amount {
+      font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700;
+      color: #fff; line-height: 1.1; margin-bottom: 8px;
+    }
+    .result-sub { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+    .result-next {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
+    }
+    .result-next-title { font-size: 13px; font-weight: 700; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .result-next-text { font-size: 15px; color: var(--text); line-height: 1.6; font-weight: 500; }
+    .result-equity-note {
+      font-size: 13px; color: var(--text-sub); line-height: 1.6;
+      padding: 14px 16px; background: var(--primary-light);
+      border-radius: var(--radius-sm); margin-bottom: 16px;
+      border-left: 3px solid var(--primary);
+    }
+
+    /* ── EXIT SCREEN ─────────────────────────────────────── */
+    .exit-hero {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 40px 28px; text-align: center; margin-bottom: 28px;
+    }
+    .exit-icon {
+      width: 64px; height: 64px; border-radius: 50%; background: #FEF2F2;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 26px; color: var(--warn);
+    }
+    .exit-hero h2 {
+      font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700;
+      line-height: 1.3; color: var(--text); margin-bottom: 12px;
+    }
+    .exit-hero p { font-size: 15px; color: var(--text-sub); line-height: 1.65; }
+
+    /* ── TCPA ────────────────────────────────────────────── */
+    .tcpa-note {
+      font-size: 11.5px; color: var(--text-light); line-height: 1.6;
+      margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
     }
 
     /* ── SCREEN CTA WRAPPER ──────────────────────────────── */
     .screen-cta { margin-top: 8px; }
 
+    /* ── ICON COLOR HELPERS ───────────────────────────────── */
+    .uc-icon i, .benefit-icon i, .benefit-tag i, .choice-icon i { color: var(--primary); }
+    .privacy-icon i { color: var(--text-sub); }
+
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 640px) {
       .nav-inner { padding: 12px 16px; }
-
       .screen-container { padding: 24px 16px 120px; }
       .screen-title { font-size: 25px; }
-      .prequal-card { padding: 20px; }
       .stat-row { flex-direction: column; }
       .row-2 { flex-direction: column; }
       .comp-table td, .comp-table th { padding: 10px 8px; font-size: 12px; }
+      .result-amount { font-size: 44px; }
+      .interstitial-hero h2 { font-size: 22px; }
+      .hei-hero h2 { font-size: 22px; }
 
-      /* Sticky CTA pinned to bottom of viewport on mobile */
+      /* Sticky CTA on mobile */
       .screen-cta {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 12px 16px 24px;
-        background: #fff;
-        border-top: 1px solid var(--border);
-        z-index: 40;
+        position: fixed; bottom: 0; left: 0; right: 0;
+        padding: 12px 16px 24px; background: #fff;
+        border-top: 1px solid var(--border); z-index: 40;
       }
       .screen-cta .btn-primary { margin-top: 0; }
     }
@@ -565,30 +468,23 @@
 
 <body>
 
-  <!-- NAV — matches Hometap's actual nav bg (bg-primary5/blue5) with real logo -->
   <nav class="nav">
     <div class="nav-inner">
       <a class="logo" href="#" aria-label="Hometap home">
-        <img
-          src="hometap-logo.svg"
-          alt="Hometap"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-        />
-        <!-- Fallback wordmark if CDN image fails -->
+        <img src="hometap-logo.svg" alt="Hometap"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
         <span style="display:none;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text)">hometap</span>
       </a>
       <a class="nav-login" href="#">Log in</a>
     </div>
   </nav>
 
-  <!-- PROGRESS -->
   <div class="progress-wrap">
     <div class="progress-bar-track">
-      <div class="progress-bar-fill" id="progressFill" style="width:12.5%"></div>
+      <div class="progress-bar-fill" id="progressFill" style="width:6%"></div>
     </div>
   </div>
 
-  <!-- SCREENS -->
   <div class="screen-container">
 
     <!-- ═══ SCREEN 1: USE CASE SELECTOR ═══ -->
@@ -625,7 +521,7 @@
           <div class="uc-icon"><i class="fa-solid fa-graduation-cap"></i></div>
           <div class="uc-text">
             <div class="uc-name">Fund an education</div>
-            <div class="uc-desc">Cover tuition, room & board, or student loan payments</div>
+            <div class="uc-desc">Cover tuition, room &amp; board, or student loan payments</div>
           </div>
           <div class="uc-radio"><span class="uc-check">✓</span></div>
         </div>
@@ -646,7 +542,6 @@
           <div class="uc-radio"><span class="uc-check">✓</span></div>
         </div>
       </div>
-
     </div>
 
 
@@ -655,39 +550,23 @@
       <button class="btn-back" onclick="goTo(1)">← Back</button>
       <p class="screen-eyebrow">Side-by-side comparison</p>
       <h2 class="screen-title" id="compTitle">How your options <span class="accent">stack up</span></h2>
-
-      <div class="insight-box" id="insightBox"><span id="insightText"></span></div>
-
+      <div class="insight-box"><span id="insightText"></span></div>
       <table class="comp-table">
         <thead>
           <tr>
             <th style="width:34%"></th>
-            <th class="th-hei">
-              Hometap HEI
-              <span class="th-hei-sub">Recommended</span>
-            </th>
+            <th class="th-hei">Hometap HEI<span class="th-hei-sub">Recommended</span></th>
             <th>HELOC</th>
             <th>Home Equity Loan</th>
           </tr>
         </thead>
         <tbody id="compBody"></tbody>
       </table>
-
       <div class="stat-row">
-        <div class="stat-card">
-          <span class="stat-num">$0</span>
-          <div class="stat-label">Monthly payment with Hometap</div>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num">$550+</span>
-          <div class="stat-label">Avg. monthly HELOC payment on $100K</div>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num">10 yrs</span>
-          <div class="stat-label">Time before Hometap repayment</div>
-        </div>
+        <div class="stat-card"><span class="stat-num">$0</span><div class="stat-label">Monthly payment with Hometap</div></div>
+        <div class="stat-card"><span class="stat-num">$550+</span><div class="stat-label">Avg. monthly HELOC payment on $100K</div></div>
+        <div class="stat-card"><span class="stat-num">10 yrs</span><div class="stat-label">Time before Hometap repayment</div></div>
       </div>
-
       <div class="screen-cta">
         <button class="btn-primary" onclick="goTo(3)">This looks right for me →</button>
       </div>
@@ -699,14 +578,8 @@
       <button class="btn-back" onclick="goTo(2)">← Back</button>
       <p class="screen-eyebrow">Why homeowners choose Hometap</p>
       <h2 class="screen-title">Real people, <span class="accent">real results</span></h2>
-
-      <div class="benefit-tag">
-        <span id="b3icon"></span>
-        <span>For: <span id="b3label"></span></span>
-      </div>
-
+      <div class="benefit-tag"><span id="b3icon"></span><span>For: <span id="b3label"></span></span></div>
       <div class="benefits-list" id="benefitsList"></div>
-
       <div class="quote-card">
         <div class="quote-mark">"</div>
         <div class="quote-text" id="quoteText"></div>
@@ -718,85 +591,347 @@
           <span class="tp-score">4.8 / 5 · 2,400+ reviews</span>
         </div>
       </div>
-
       <div class="screen-cta">
         <button class="btn-primary" onclick="goTo(4)">See how much you could get →</button>
       </div>
     </div>
 
 
-    <!-- ═══ SCREEN 4: PRE-QUAL ENTRY (existing flow) ═══ -->
+    <!-- ═══ SCREEN 4: INTERSTITIAL ═══ -->
     <div class="screen" id="screen-4">
       <button class="btn-back" onclick="goTo(3)">← Back</button>
 
-      <div class="prequal-header-block">
-        <div class="prequal-tag-icon" id="pq4icon"></div>
-        <div>
-          <div class="prequal-tag-text">Goal: <span id="pq4label"></span></div>
-          <div class="prequal-tag-sub">Pre-filled from your selection</div>
+      <div class="interstitial-hero">
+        <div class="hero-icon"><i class="fa-solid fa-house-circle-check"></i></div>
+        <h2>Access your home equity with <span class="accent">no monthly payment.</span></h2>
+        <p>Tell us about yourself and your home — we'll show you what you qualify for.</p>
+      </div>
+
+      <div class="steps-row">
+        <div class="step-item">
+          <div class="step-circle"><i class="fa-solid fa-user"></i></div>
+          <div class="step-label">About you</div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-item">
+          <div class="step-circle"><i class="fa-solid fa-house"></i></div>
+          <div class="step-label">Your home</div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-item">
+          <div class="step-circle"><i class="fa-solid fa-chart-bar"></i></div>
+          <div class="step-label">Your estimate</div>
         </div>
       </div>
 
-      <div class="prequal-card">
-        <h2 class="prequal-title">Is your property eligible for a Hometap Investment?</h2>
-        <p class="prequal-sub">You can pre-qualify in less than two minutes. First, we need your address.</p>
+      <div class="screen-cta">
+        <button class="btn-primary" onclick="goTo(5)">Get started →</button>
+      </div>
+    </div>
 
+
+    <!-- ═══ SCREEN 5: WHY DO YOU NEED CASH ═══ -->
+    <div class="screen" id="screen-5">
+      <button class="btn-back" onclick="goTo(4)">← Back</button>
+      <h2 class="screen-title">Why do you need some <span class="accent">extra cash?</span></h2>
+      <div class="choice-list" id="reasonList">
+        <div class="choice-card" onclick="selectReason('debt',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-credit-card"></i></div>Pay down debt</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectReason('renovation',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-hammer"></i></div>Home renovations</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectReason('lifeevent',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-heart"></i></div>Cover a major expense</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectReason('education',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-graduation-cap"></i></div>Fund education</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectReason('business',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-briefcase"></i></div>Start or grow a business</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectReason('retirement',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-sun"></i></div>Supplement retirement income</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 6: HOW MUCH ═══ -->
+    <div class="screen" id="screen-6">
+      <button class="btn-back" onclick="goTo(5)">← Back</button>
+      <h2 class="screen-title">How much extra cash are <span class="accent">you looking for?</span></h2>
+      <div class="choice-list" id="amountList">
+        <div class="choice-card" onclick="selectAmount('lt10k',this)">
+          <div class="choice-left">Less than $10K</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectAmount('10to25k',this)">
+          <div class="choice-left">$10K – $25K</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectAmount('25to50k',this)">
+          <div class="choice-left">$25K – $50K</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectAmount('50to100k',this)">
+          <div class="choice-left">$50K – $100K</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectAmount('100kplus',this)">
+          <div class="choice-left">$100K+</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 7: HOW SOON ═══ -->
+    <div class="screen" id="screen-7">
+      <button class="btn-back" onclick="goTo(6)">← Back</button>
+      <h2 class="screen-title">How soon do you <span class="accent">need the money?</span></h2>
+      <div class="choice-list" id="urgencyList">
+        <div class="choice-card" onclick="selectUrgency('today',this)">
+          <div class="choice-left">Today</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectUrgency('week',this)">
+          <div class="choice-left">Within a week</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectUrgency('month',this)">
+          <div class="choice-left">Within a month</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectUrgency('notsure',this)">
+          <div class="choice-left">Not sure</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 8: EDUCATION STATEMENT ═══ -->
+    <div class="screen" id="screen-8">
+      <button class="btn-back" onclick="goTo(7)">← Back</button>
+      <p class="screen-eyebrow">How Hometap works</p>
+
+      <div class="edu-card">
+        <div class="edu-icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+        <div class="edu-headline">Unlike a HELOC or home equity loan, a Hometap Investment has <span class="accent">no monthly payment.</span></div>
+        <div class="edu-compare">
+          <div class="edu-compare-item bad"><i class="fa-solid fa-xmark"></i> HELOC: $400–$800 per month</div>
+          <div class="edu-compare-item bad"><i class="fa-solid fa-xmark"></i> Home equity loan: $300–$700 per month</div>
+          <div class="edu-compare-item good"><i class="fa-solid fa-check"></i> Hometap Investment: $0 per month</div>
+        </div>
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" onclick="goTo(9)">Got it — continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 9: HEI INTERSTITIAL ═══ -->
+    <div class="screen" id="screen-9">
+      <button class="btn-back" onclick="goTo(8)">← Back</button>
+
+      <div class="hei-hero">
+        <div class="hei-hero-eyebrow">Home Equity Investment</div>
+        <h2>Get up to $600K without a monthly payment</h2>
+        <p>You share a portion of your home's future appreciation — paid when you sell or after 10 years, whichever comes first.</p>
+      </div>
+
+      <div class="hei-quote">
+        <div class="quote-mark">"</div>
+        <div class="quote-text">I lost my job and had no way to pay my bills. With my Hometap investment I was able to get $30K, which allowed me to stay current on bills until I found my next job.</div>
+        <div class="quote-attribution">Laura S.</div>
+        <div class="quote-location">Austin, TX</div>
+        <div class="tp-row">
+          <span class="tp-logo">Trustpilot</span>
+          <span class="tp-stars">★★★★★</span>
+          <span class="tp-score">4.8 / 5 · 2,400+ reviews</span>
+        </div>
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" onclick="goTo(10)">Find out what you qualify for →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 10: ADDRESS ═══ -->
+    <div class="screen" id="screen-10">
+      <button class="btn-back" onclick="goTo(9)">← Back</button>
+      <h2 class="screen-title">Where is your <span class="accent">house located?</span></h2>
+      <p class="screen-sub">We use your address to estimate your home's current market value.</p>
+
+      <div class="address-wrap">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Property address</label>
+          <input class="form-input" type="text" id="addressInput" placeholder="Start typing your address…" autocomplete="off" aria-label="Property address" />
+        </div>
+        <div class="autocomplete-list" id="autocompleteList"></div>
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="addressCta" onclick="submitAddress()" disabled>Continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 11: PROPERTY TYPE ═══ -->
+    <div class="screen" id="screen-11">
+      <button class="btn-back" onclick="goTo(10)">← Back</button>
+      <h2 class="screen-title">How would you <span class="accent">describe it?</span></h2>
+      <div class="choice-list">
+        <div class="choice-card" onclick="selectPropertyType('primary',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-house-user"></i></div>Primary home</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectPropertyType('secondary',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-house"></i></div>Secondary home</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectPropertyType('investment',this)">
+          <div class="choice-left"><div class="choice-icon"><i class="fa-solid fa-building"></i></div>Investment property</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 12: DEBT ═══ -->
+    <div class="screen" id="screen-12">
+      <button class="btn-back" onclick="goTo(11)">← Back</button>
+      <h2 class="screen-title">What is the estimated <span class="accent">debt on your property?</span></h2>
+      <p class="screen-sub">Give us your best guess on the remaining principal for any mortgages or other loans on the property.</p>
+
+      <div class="form-group">
+        <label class="form-label">Remaining mortgage balance</label>
+        <div class="input-prefix-wrap">
+          <span class="input-prefix">$</span>
+          <input class="form-input input-with-prefix" type="text" inputmode="numeric"
+            id="debtInput" placeholder="0" aria-label="Estimated remaining mortgage balance" />
+        </div>
+        <div class="field-hint">Include all mortgages, HELOCs, or other liens.</div>
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="debtCta" onclick="submitDebt()" disabled>Continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 13: NAME ═══ -->
+    <div class="screen" id="screen-13">
+      <button class="btn-back" onclick="goTo(12)">← Back</button>
+      <h2 class="screen-title">What's <span class="accent">your name?</span></h2>
+
+      <div class="row-2">
         <div class="form-group">
-          <label class="form-label">Property Address</label>
-          <input class="form-input" type="text" placeholder="123 Main Street" id="addressInput" />
+          <label class="form-label">First name</label>
+          <input class="form-input" type="text" id="firstNameInput" placeholder="First name" aria-label="First name" />
         </div>
-
         <div class="form-group">
-          <label class="form-label">Unit (Optional)</label>
-          <input class="form-input" type="text" placeholder="Apt, Suite, Unit #" />
+          <label class="form-label">Last name</label>
+          <input class="form-input" type="text" id="lastNameInput" placeholder="Last name" aria-label="Last name" />
         </div>
+      </div>
 
-        <div class="form-group">
-          <label class="form-label">City</label>
-          <input class="form-input" type="text" placeholder="City" />
+      <div class="screen-cta">
+        <button class="btn-primary" id="nameCta" onclick="submitName()" disabled>Continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 14: PHONE ═══ -->
+    <div class="screen" id="screen-14">
+      <button class="btn-back" onclick="goTo(13)">← Back</button>
+      <h2 class="screen-title">What's your <span class="accent">phone number?</span></h2>
+
+      <div class="form-group">
+        <label class="form-label">Mobile number</label>
+        <input class="form-input" type="tel" id="phoneInput" placeholder="(555) 000-0000" aria-label="Phone number" />
+      </div>
+
+      <div class="tcpa-note">
+        By providing your phone number, you consent to receive calls and text messages from Hometap, including via automated dialing systems or pre-recorded messages, about your home equity inquiry. Message and data rates may apply. Consent is not a condition of purchase. Reply STOP to opt out.
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="phoneCta" onclick="submitPhone()" disabled>Continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 15: EMAIL ═══ -->
+    <div class="screen" id="screen-15">
+      <button class="btn-back" onclick="goTo(14)">← Back</button>
+      <h2 class="screen-title">Where should we <span class="accent">send your estimate?</span></h2>
+
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-input" type="email" id="emailInput" placeholder="you@example.com" aria-label="Email address" />
+      </div>
+
+      <div class="privacy-note">
+        <span class="privacy-icon"><i class="fa-solid fa-lock"></i></span>
+        <span>Your information is encrypted and never sold. <a href="#" style="color:var(--primary)">Privacy Policy</a></span>
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="emailCta" onclick="startLoading()" disabled>Get your estimate →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 16: LOADING ═══ -->
+    <div class="screen" id="screen-16">
+      <div class="loading-header">
+        <div class="loading-spinner-wrap"><div class="spinner"></div></div>
+        <h2 class="screen-title" style="text-align:center;font-size:24px">Calculating your <span class="accent">investment estimate…</span></h2>
+      </div>
+
+      <div class="loading-items">
+        <div class="loading-item" id="load1">
+          <div class="loading-dot" id="dot1"></div>
+          <div class="loading-item-text">Verifying your home is eligible for investment</div>
         </div>
-
-        <div class="row-2">
-          <div class="form-group">
-            <label class="form-label">State</label>
-            <select class="form-select">
-              <option value="">State</option>
-              <option>AZ</option><option>CA</option><option>FL</option><option>IN</option>
-              <option>MI</option><option>MN</option><option>MO</option><option>NV</option>
-              <option>NJ</option><option>NY</option><option>OH</option><option>OR</option>
-              <option>PA</option><option>SC</option><option>UT</option><option>VA</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">ZIP Code</label>
-            <input class="form-input" type="text" placeholder="ZIP" maxlength="5" />
-          </div>
+        <div class="loading-item" id="load2">
+          <div class="loading-dot" id="dot2"></div>
+          <div class="loading-item-text">Checking you meet our underwriting requirements</div>
         </div>
-
-        <div class="divider"></div>
-
-        <div class="form-group">
-          <label class="form-label">Primary reason for accessing equity</label>
-          <select class="form-select prepopulated" id="useOfFunds">
-            <option value="">Select a reason</option>
-            <option value="debt">Pay off debt</option>
-            <option value="renovation">Fund home improvements</option>
-            <option value="lifeevent">Fund a life event</option>
-            <option value="education">Fund an education</option>
-            <option value="business">Fund your small business</option>
-            <option value="retirement">Fund your retirement</option>
-          </select>
-          <div class="field-hint">✓ Pre-filled from your selection — tap to change</div>
+        <div class="loading-item" id="load3">
+          <div class="loading-dot" id="dot3"></div>
+          <div class="loading-item-text">Estimating your investment amount</div>
         </div>
+      </div>
+    </div>
 
-        <div class="screen-cta">
-          <button class="btn-primary" onclick="handleSubmit()">Continue</button>
-        </div>
 
-        <div class="privacy-note">
-          <span class="privacy-icon"><i class="fa-solid fa-lock"></i></span>
-          <span>All data is AES-256 encrypted and stored securely. We do not sell your personally identifiable information. <a href="#" style="color:var(--primary)">Privacy Policy</a></span>
-        </div>
+    <!-- ═══ SCREEN 17: RESULTS ═══ -->
+    <div class="screen" id="screen-17">
+      <div class="result-hero">
+        <div class="result-eyebrow">Your estimate</div>
+        <div class="result-label">You qualify for up to</div>
+        <div class="result-amount" id="resultAmount">—</div>
+        <div class="result-sub">Based on your home's estimated value and current mortgage balance</div>
+      </div>
+
+      <div class="result-equity-note">
+        In exchange for your investment, Hometap receives a share of your home's future appreciation — no monthly payment required. You settle when you sell or after 10 years.
+      </div>
+
+      <div class="result-next">
+        <div class="result-next-title">What happens next</div>
+        <div class="result-next-text" id="callbackText">A Hometap specialist will reach out within the next 5 minutes to walk you through next steps.</div>
       </div>
 
       <div class="tp-footer">
@@ -806,21 +941,39 @@
       </div>
     </div>
 
+
+    <!-- ═══ EXIT SCREEN: INVESTMENT PROPERTY ═══ -->
+    <div class="screen" id="screen-exit">
+      <div class="exit-hero">
+        <div class="exit-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <h2>Unfortunately, we can't provide an investment for this property today.</h2>
+        <p>Hometap investments are currently available for primary and secondary homes. We are rapidly expanding our offering and will be sure to reach out if we can help in the future.</p>
+      </div>
+      <button class="btn-outline" onclick="goTo(1)" style="width:100%">← Return home</button>
+    </div>
+
   </div><!-- /screen-container -->
 
 
   <script>
     // ── STATE ──────────────────────────────────────────────
-    let selectedKey = null;
+    let selectedKey     = null; // use case key (debt, renovation, etc.)
+    let selectedAmount  = null; // amount range key
+    let selectedUrgency = null; // urgency key (today, week, month, notsure)
+    let userAddress     = '';
+    let userDebt        = 0;
+    let userFirstName   = '';
+    let userLastName    = '';
+    let userPhone       = '';
+    let userEmail       = '';
+    let qualifiedAmount = 0;
 
     // ── USE CASE DATA ──────────────────────────────────────
-    // Use case labels match Hometap's actual homepage nav labels
     const useCases = {
       debt: {
         label: 'Pay off debt', icon: 'fa-solid fa-credit-card',
         compTitle: 'Comparing home equity options for <span class="accent">paying off debt</span>',
-        compSub: 'For debt consolidation, the right product should reduce your monthly burden — not add to it.',
-        insight: '<strong>For paying off debt:</strong> A Hometap Investment gives you cash to eliminate what you owe without creating a new monthly payment. You reduce existing debt without adding to your monthly obligations.',
+        insight: '<strong>For paying off debt:</strong> A Hometap Investment gives you cash to eliminate what you owe without creating a new monthly payment.',
         heiWins: ['Monthly payment', 'Adds to monthly debt'],
         benefits: [
           { icon: 'fa-solid fa-coins', title: 'Zero new monthly payments', desc: 'Get the cash you need now. Your payment comes later — at the end of your term or when you sell — up to 10 years away.' },
@@ -832,25 +985,23 @@
       renovation: {
         label: 'Fund home improvements', icon: 'fa-solid fa-house',
         compTitle: 'Comparing home equity options for <span class="accent">home improvements</span>',
-        compSub: 'Renovation financing should work around your project timeline, not the other way around.',
-        insight: '<strong>For renovations:</strong> Unlike a HELOC\'s draw period or a loan\'s fixed schedule, a Hometap Investment lets you fund your project on your timeline — with no payment pressure while your home is under construction.',
+        insight: '<strong>For renovations:</strong> A Hometap Investment lets you fund your project on your timeline — with no payment pressure while your home is under construction.',
         heiWins: ['Monthly payment', 'Repayment flexibility'],
         benefits: [
           { icon: 'fa-solid fa-hammer', title: 'No payment pressure mid-project', desc: 'No monthly payments while your home is a work in progress. Complete your renovation on your schedule.' },
-          { icon: 'fa-solid fa-chart-line', title: "We're invested in your home's value too", desc: "Renovations that increase your home's value work in your favor at settlement — Hometap shares in the appreciation, so we're both rooting for the same outcome." },
-          { icon: 'fa-solid fa-building-columns', title: 'More flexible than a draw period', desc: "Unlike a HELOC, there's no mandatory draw window. Access your funds when and how the project actually needs them." }
+          { icon: 'fa-solid fa-chart-line', title: "We're invested in your home's value too", desc: "Renovations that increase your home's value work in your favor at settlement — we share in the appreciation." },
+          { icon: 'fa-solid fa-building-columns', title: 'More flexible than a draw period', desc: "Unlike a HELOC, there's no mandatory draw window. Access your funds when the project actually needs them." }
         ],
         quote: { text: "We finally got the kitchen renovation we'd been putting off for years. The process was so much simpler than getting a traditional loan.", name: 'Sarah M.', loc: 'Austin, TX' }
       },
       lifeevent: {
         label: 'Fund a life event', icon: 'fa-solid fa-star',
         compTitle: 'Comparing home equity options for <span class="accent">a life event</span>',
-        compSub: 'Major life transitions call for flexibility — not another fixed monthly commitment.',
-        insight: "<strong>For life events:</strong> Whether it's a divorce, a move, or a growing family, a Hometap Investment gives you immediate access to equity without creating a new monthly obligation during an already demanding time.",
+        insight: "<strong>For life events:</strong> A Hometap Investment gives you immediate access to equity without creating a new monthly obligation during an already demanding time.",
         heiWins: ['Monthly payment', 'Adds to monthly debt'],
         benefits: [
-          { icon: 'fa-solid fa-star', title: 'Access equity without adding stress', desc: 'Life events are already demanding. A Hometap Investment gives you the financial flexibility to navigate change without a new monthly bill.' },
-          { icon: 'fa-solid fa-lock-open', title: 'No prepayment penalties', desc: 'Settle whenever the timing is right — buy out the Investment using savings, a refinance, or a home sale. No rush, no fees.' },
+          { icon: 'fa-solid fa-star', title: 'Access equity without adding stress', desc: 'Life events are already demanding. A Hometap Investment gives you flexibility without a new monthly bill.' },
+          { icon: 'fa-solid fa-lock-open', title: 'No prepayment penalties', desc: 'Settle whenever the timing is right — buy out using savings, a refinance, or a home sale. No rush, no fees.' },
           { icon: 'fa-solid fa-bolt', title: 'Funded in weeks, not months', desc: 'Our process typically takes 2–3 weeks — fast enough to be useful when life actually changes.' }
         ],
         quote: { text: "This was a good way for me to do what I was doing: keep the house and settle my divorce.", name: 'Zac C.', loc: 'New River, AZ' }
@@ -858,11 +1009,10 @@
       education: {
         label: 'Fund an education', icon: 'fa-solid fa-graduation-cap',
         compTitle: 'Comparing home equity options for <span class="accent">funding education</span>',
-        compSub: 'The best way to fund education is one that keeps your family\'s monthly budget intact.',
-        insight: "<strong>For education funding:</strong> A Hometap Investment lets you cover tuition or living expenses without adding a new monthly payment — keeping your family's cash flow flexible during a major transition.",
+        insight: "<strong>For education funding:</strong> A Hometap Investment lets you cover tuition or living expenses without adding a new monthly payment.",
         heiWins: ['Monthly payment', 'Adds to monthly debt'],
         benefits: [
-          { icon: 'fa-solid fa-book-open', title: 'Fund tuition without new monthly payments', desc: "Cover tuition, room and board, or living expenses — all without adding a monthly bill to your household's budget." },
+          { icon: 'fa-solid fa-book-open', title: 'Fund tuition without new monthly payments', desc: "Cover tuition, room and board, or living expenses — without adding a monthly bill to your household budget." },
           { icon: 'fa-solid fa-bullseye', title: 'Keep federal student loan options open', desc: "By using home equity instead, your student's federal loan capacity remains available and untouched." },
           { icon: 'fa-solid fa-clock', title: 'Flexible timing for a flexible life event', desc: 'Access funds per semester or all at once. Repay when it works for your family — up to 10 years.' }
         ],
@@ -871,8 +1021,7 @@
       business: {
         label: 'Fund your small business', icon: 'fa-solid fa-briefcase',
         compTitle: 'Comparing home equity options for <span class="accent">your business</span>',
-        compSub: 'Business capital should fuel your growth — not drain it with monthly payments before revenue starts.',
-        insight: "<strong>For small business funding:</strong> A Hometap Investment gives you capital without a monthly payment eating into your runway. Approval is based on your home equity, not your business's revenue history.",
+        insight: "<strong>For small business funding:</strong> A Hometap Investment gives you capital without a monthly payment eating into your runway. Approval is based on home equity, not revenue history.",
         heiWins: ['Monthly payment', 'Approval basis'],
         benefits: [
           { icon: 'fa-solid fa-rocket', title: "Invest in your business, not your bank's", desc: 'Zero monthly payments means every dollar you access can go toward your business — not servicing debt.' },
@@ -884,102 +1033,96 @@
       retirement: {
         label: 'Fund your retirement', icon: 'fa-solid fa-sun',
         compTitle: 'Comparing home equity options for <span class="accent">retirement</span>',
-        compSub: 'In retirement, cash flow is everything. The last thing you need is a new monthly payment.',
-        insight: "<strong>For retirement:</strong> A Hometap Investment lets you access your home's equity without adding to your fixed monthly expenses — preserving the cash flow that matters most in retirement.",
+        insight: "<strong>For retirement:</strong> A Hometap Investment lets you access your home's equity without adding to your fixed monthly expenses — preserving cash flow that matters most in retirement.",
         heiWins: ['Monthly payment', 'Adds to monthly debt'],
         benefits: [
-          { icon: 'fa-solid fa-sun', title: 'No monthly payment to plan around', desc: 'On a fixed income, every dollar counts. A Hometap Investment preserves your cash flow — repayment comes when you sell or at the end of the term.' },
+          { icon: 'fa-solid fa-sun', title: 'No monthly payment to plan around', desc: 'On a fixed income, every dollar counts. A Hometap Investment preserves your cash flow — repayment comes when you sell.' },
           { icon: 'fa-solid fa-lock-open', title: 'Stay in the home you love', desc: 'Access your equity without having to sell. Get the financial flexibility to live comfortably in your current home.' },
-          { icon: 'fa-solid fa-chart-line', title: 'Up to $600K available', desc: "For homeowners with significant equity, Hometap can provide a meaningful amount of capital — often more accessible than many traditional options." }
+          { icon: 'fa-solid fa-chart-line', title: 'Up to $600K available', desc: "For homeowners with significant equity, Hometap can provide a meaningful amount of capital — often more accessible than traditional options." }
         ],
         quote: { text: "Having that financial cushion gave me peace of mind I hadn't felt in years. And I didn't have to worry about another monthly payment.", name: 'Maria L.', loc: 'Phoenix, AZ' }
       }
     };
 
-    // ── COMPARISON TABLE DATA ──────────────────────────────
+    // ── COMPARISON TABLE ROWS ──────────────────────────────
     const baseRows = [
-      { label: 'Monthly payment',    hei: 'None',        heloc: '$400–800/mo',     heloan: '$300–700/mo',   heiGood: true },
-      { label: 'Adds to monthly debt', hei: 'No',        heloc: 'Yes',             heloan: 'Yes',            heiGood: true },
-      { label: 'Approval basis',     hei: 'Home equity', heloc: 'Credit + income', heloan: 'Credit + income', heiGood: true },
-      { label: 'Funds available',    hei: 'Up to $600K', heloc: 'Up to 85% LTV',   heloan: 'Up to 80% LTV',  heiGood: false },
-      { label: 'Repayment flexibility', hei: 'Up to 10 yrs', heloc: 'Fixed draw period', heloan: 'Fixed schedule', heiGood: true },
-      { label: 'Credit check type', hei: 'Soft pull',   heloc: 'Hard pull',        heloan: 'Hard pull',      heiGood: true }
+      { label: 'Monthly payment',       hei: 'None',        heloc: '$400–800/mo',      heloan: '$300–700/mo',    heiGood: true },
+      { label: 'Adds to monthly debt',  hei: 'No',          heloc: 'Yes',              heloan: 'Yes',            heiGood: true },
+      { label: 'Approval basis',        hei: 'Home equity', heloc: 'Credit + income',  heloan: 'Credit + income',heiGood: true },
+      { label: 'Funds available',       hei: 'Up to $600K', heloc: 'Up to 85% LTV',    heloan: 'Up to 80% LTV',  heiGood: false },
+      { label: 'Repayment flexibility', hei: 'Up to 10 yrs',heloc: 'Fixed draw period', heloan: 'Fixed schedule', heiGood: true },
+      { label: 'Credit check type',     hei: 'Soft pull',   heloc: 'Hard pull',        heloan: 'Hard pull',      heiGood: true }
     ];
 
-    // ── NAVIGATION ─────────────────────────────────────────
-    const pct = { 1: 12.5, 2: 37.5, 3: 62.5, 4: 100 };
+    // ── PROGRESS ───────────────────────────────────────────
+    // 17 total screens + exit; progress tracks screens 1-17
+    const pct = { 1:6, 2:12, 3:18, 4:24, 5:29, 6:35, 7:41, 8:47, 9:53, 10:59, 11:65, 12:71, 13:76, 14:82, 15:88, 16:94, 17:100 };
 
+    // ── NAVIGATION ─────────────────────────────────────────
     function goTo(n) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + n).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      document.getElementById('progressFill').style.width = pct[n] + '%';
-
-      if (n === 2) renderComparison();
-      if (n === 3) renderBenefits();
-      if (n === 4) renderPrequal();
+      if (pct[n] !== undefined) {
+        document.getElementById('progressFill').style.width = pct[n] + '%';
+      }
+      // Run per-screen render functions
+      if (n === 2)  renderComparison();
+      if (n === 3)  renderBenefits();
+      if (n === 5)  renderReasonList();
+      if (n === 17) renderResults();
     }
 
-    // ── USE CASE SELECTION ─────────────────────────────────
+    function goToExit() {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('screen-exit').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── SCREEN 1: USE CASE SELECTION ──────────────────────
     function selectUseCase(key, card) {
-      document.querySelectorAll('.use-case-card').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('#useCaseList .use-case-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       selectedKey = key;
-      // Auto-advance after brief visual confirmation of selection
       setTimeout(() => goTo(2), 280);
     }
 
-    // ── RENDER COMPARISON ──────────────────────────────────
+    // ── SCREEN 2: COMPARISON ──────────────────────────────
     function renderComparison() {
       const uc = useCases[selectedKey];
       document.getElementById('compTitle').innerHTML = uc.compTitle;
       document.getElementById('insightText').innerHTML = uc.insight;
-
       const tbody = document.getElementById('compBody');
       tbody.innerHTML = '';
-
       baseRows.forEach(row => {
         const isWin = uc.heiWins.includes(row.label);
         const tr = document.createElement('tr');
         if (isWin) tr.classList.add('win-row');
-
-        const heiContent = row.heiGood
-          ? `<span class="chk">✓</span> ${row.hei}`
-          : row.hei;
-        const helocContent = row.heiGood
-          ? `<span class="dash">–</span> ${row.heloc}`
-          : row.heloc;
-        const heloanContent = row.heiGood
-          ? `<span class="dash">–</span> ${row.heloan}`
-          : row.heloan;
-
+        const heiContent   = row.heiGood ? `<span class="chk">✓</span> ${row.hei}` : row.hei;
+        const helocContent = row.heiGood ? `<span class="dash">–</span> ${row.heloc}` : row.heloc;
+        const heloanContent= row.heiGood ? `<span class="dash">–</span> ${row.heloan}` : row.heloan;
         tr.innerHTML = `
           <td>${row.label}${isWin ? '<span class="win-badge">★ Best</span>' : ''}</td>
           <td class="td-hei">${heiContent}</td>
           <td>${helocContent}</td>
-          <td>${heloanContent}</td>
-        `;
+          <td>${heloanContent}</td>`;
         tbody.appendChild(tr);
       });
-
-      // Add "Best for" row
       const bestTr = document.createElement('tr');
       bestTr.classList.add('win-row');
       bestTr.innerHTML = `
         <td>Best for <em>${uc.label.toLowerCase()}</em> <span class="win-badge">★ Best</span></td>
         <td class="td-hei"><span class="chk">✓</span> Yes</td>
         <td><span class="dash">–</span> Partial</td>
-        <td><span class="dash">–</span> Partial</td>
-      `;
+        <td><span class="dash">–</span> Partial</td>`;
       tbody.appendChild(bestTr);
     }
 
-    // ── RENDER BENEFITS ────────────────────────────────────
+    // ── SCREEN 3: BENEFITS ────────────────────────────────
     function renderBenefits() {
       const uc = useCases[selectedKey];
       document.getElementById('b3icon').innerHTML = `<i class="${uc.icon}"></i>`;
       document.getElementById('b3label').textContent = uc.label;
-
       const list = document.getElementById('benefitsList');
       list.innerHTML = '';
       uc.benefits.forEach(b => {
@@ -987,40 +1130,248 @@
         d.className = 'benefit-card';
         d.innerHTML = `
           <div class="benefit-icon"><i class="${b.icon}"></i></div>
-          <div>
-            <div class="benefit-title">${b.title}</div>
-            <div class="benefit-desc">${b.desc}</div>
-          </div>`;
+          <div><div class="benefit-title">${b.title}</div><div class="benefit-desc">${b.desc}</div></div>`;
         list.appendChild(d);
       });
-
       document.getElementById('quoteText').textContent = uc.quote.text;
       document.getElementById('quoteName').textContent = uc.quote.name;
-      document.getElementById('quoteLoc').textContent = uc.quote.loc;
+      document.getElementById('quoteLoc').textContent  = uc.quote.loc;
     }
 
-    // ── RENDER PRE-QUAL ────────────────────────────────────
-    function renderPrequal() {
-      const uc = useCases[selectedKey];
-      document.getElementById('pq4icon').innerHTML = `<i class="${uc.icon}"></i>`;
-      document.getElementById('pq4label').textContent = uc.label;
-      document.getElementById('useOfFunds').value = selectedKey;
-    }
-
-    // ── SUBMIT ─────────────────────────────────────────────
-    function handleSubmit() {
-      const addr = document.getElementById('addressInput').value.trim();
-      if (!addr) {
-        const el = document.getElementById('addressInput');
-        el.style.borderColor = 'var(--warn)';
-        el.focus();
-        return;
+    // ── SCREEN 5: REASON (pre-fill from Screen 1) ─────────
+    function renderReasonList() {
+      // Pre-select the use case chosen on Screen 1
+      document.querySelectorAll('#reasonList .choice-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      if (selectedKey) {
+        const keyMap = { debt:'debt', renovation:'renovation', lifeevent:'lifeevent', education:'education', business:'business', retirement:'retirement' };
+        const match = document.querySelector(`#reasonList .choice-card[data-reason="${keyMap[selectedKey]}"]`);
+        if (match) match.classList.add('selected');
       }
-      alert('✅ In the live product, this would continue into the existing Hometap pre-qualification flow (property type → occupancy → existing debt → timeline → identity → estimate).\n\nThis prototype demonstrates the education layer added before the existing flow — and shows how the use case selection carries forward into the pre-qual.');
     }
+
+    function selectReason(key, card) {
+      document.querySelectorAll('#reasonList .choice-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedKey = key; // update in case user changes their answer
+      setTimeout(() => goTo(6), 280);
+    }
+
+    // ── SCREEN 6: AMOUNT ──────────────────────────────────
+    function selectAmount(key, card) {
+      document.querySelectorAll('#amountList .choice-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedAmount = key;
+      setTimeout(() => goTo(7), 280);
+    }
+
+    // ── SCREEN 7: URGENCY ─────────────────────────────────
+    function selectUrgency(key, card) {
+      document.querySelectorAll('#urgencyList .choice-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedUrgency = key;
+      setTimeout(() => goTo(8), 280);
+    }
+
+    // ── SCREEN 10: ADDRESS WITH MOCK AUTOCOMPLETE ─────────
+    function setupAddress() {
+      const input = document.getElementById('addressInput');
+      const list  = document.getElementById('autocompleteList');
+      const cta   = document.getElementById('addressCta');
+
+      const citySuggestions = ['Austin, TX 78701', 'Phoenix, AZ 85001', 'Denver, CO 80202'];
+
+      input.addEventListener('input', function() {
+        const val = this.value.trim();
+        cta.disabled = val.length < 5;
+        if (val.length < 3) { list.classList.remove('open'); return; }
+
+        list.innerHTML = '';
+        citySuggestions.forEach(city => {
+          const item = document.createElement('div');
+          item.className = 'autocomplete-item';
+          item.innerHTML = `<i class="fa-solid fa-location-dot"></i>${val}, ${city}`;
+          item.addEventListener('click', () => {
+            input.value = `${val}, ${city}`;
+            list.classList.remove('open');
+            cta.disabled = false;
+          });
+          list.appendChild(item);
+        });
+        list.classList.add('open');
+      });
+
+      document.addEventListener('click', e => {
+        if (!e.target.closest('.address-wrap')) list.classList.remove('open');
+      });
+    }
+
+    function submitAddress() {
+      const val = document.getElementById('addressInput').value.trim();
+      if (val.length < 5) return;
+      userAddress = val;
+      document.getElementById('autocompleteList').classList.remove('open');
+      goTo(11);
+    }
+
+    // ── SCREEN 11: PROPERTY TYPE ──────────────────────────
+    function selectPropertyType(type, card) {
+      document.querySelectorAll('#screen-11 .choice-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      setTimeout(() => {
+        if (type === 'investment') { goToExit(); }
+        else { goTo(12); }
+      }, 280);
+    }
+
+    // ── SCREEN 12: DEBT ───────────────────────────────────
+    function setupDebt() {
+      const input = document.getElementById('debtInput');
+      const cta   = document.getElementById('debtCta');
+      input.addEventListener('input', function() {
+        // Format with commas as user types
+        const raw = this.value.replace(/[^0-9]/g, '');
+        this.value = raw ? parseInt(raw, 10).toLocaleString() : '';
+        cta.disabled = raw.length === 0;
+      });
+    }
+
+    function submitDebt() {
+      const raw = document.getElementById('debtInput').value.replace(/[^0-9]/g, '');
+      if (!raw) return;
+      userDebt = parseInt(raw, 10);
+      goTo(13);
+    }
+
+    // ── SCREEN 13: NAME ───────────────────────────────────
+    function setupName() {
+      const first = document.getElementById('firstNameInput');
+      const last  = document.getElementById('lastNameInput');
+      const cta   = document.getElementById('nameCta');
+      const check = () => { cta.disabled = !(first.value.trim() && last.value.trim()); };
+      first.addEventListener('input', check);
+      last.addEventListener('input', check);
+    }
+
+    function submitName() {
+      userFirstName = document.getElementById('firstNameInput').value.trim();
+      userLastName  = document.getElementById('lastNameInput').value.trim();
+      if (!userFirstName || !userLastName) return;
+      goTo(14);
+    }
+
+    // ── SCREEN 14: PHONE ──────────────────────────────────
+    function setupPhone() {
+      const input = document.getElementById('phoneInput');
+      const cta   = document.getElementById('phoneCta');
+      input.addEventListener('input', function() {
+        // Format as (XXX) XXX-XXXX
+        const digits = this.value.replace(/\D/g, '').slice(0, 10);
+        let fmt = '';
+        if (digits.length > 0) fmt = '(' + digits.slice(0,3);
+        if (digits.length >= 4) fmt += ') ' + digits.slice(3,6);
+        if (digits.length >= 7) fmt += '-' + digits.slice(6,10);
+        this.value = fmt;
+        cta.disabled = digits.length < 10;
+      });
+    }
+
+    function submitPhone() {
+      const digits = document.getElementById('phoneInput').value.replace(/\D/g, '');
+      if (digits.length < 10) return;
+      userPhone = digits;
+      goTo(15);
+    }
+
+    // ── SCREEN 15: EMAIL ──────────────────────────────────
+    function setupEmail() {
+      const input = document.getElementById('emailInput');
+      const cta   = document.getElementById('emailCta');
+      input.addEventListener('input', function() {
+        cta.disabled = !this.value.includes('@') || !this.value.includes('.');
+      });
+    }
+
+    // ── SCREEN 16: LOADING → RESULTS ─────────────────────
+    function startLoading() {
+      const emailVal = document.getElementById('emailInput').value.trim();
+      if (!emailVal.includes('@')) return;
+      userEmail = emailVal;
+
+      // Pre-calculate result before navigating
+      qualifiedAmount = calculateQualification();
+      goTo(16);
+
+      // Animate loading items sequentially
+      const items = ['load1','load2','load3'];
+      const dots  = ['dot1','dot2','dot3'];
+      items.forEach((id, i) => {
+        setTimeout(() => {
+          const item = document.getElementById(id);
+          const dot  = document.getElementById(dots[i]);
+          item.classList.add('visible');
+          dot.classList.add('active');
+          setTimeout(() => {
+            dot.classList.remove('active');
+            dot.classList.add('done');
+            dot.innerHTML = '<i class="fa-solid fa-check" style="font-size:12px"></i>';
+            item.classList.add('done-item');
+          }, 700);
+        }, i * 950);
+      });
+
+      // Navigate to results after all items animate
+      setTimeout(() => goTo(17), 3400);
+    }
+
+    // ── MOCK HOME VALUE + QUALIFICATION CALC ──────────────
+    function getMockHomeValue(address) {
+      // Deterministic hash → consistent value for same address
+      let hash = 0;
+      for (let i = 0; i < address.length; i++) {
+        hash = ((hash << 5) - hash) + address.charCodeAt(i);
+        hash |= 0;
+      }
+      const min = 350000, max = 900000;
+      return min + (Math.abs(hash) % (max - min));
+    }
+
+    function calculateQualification() {
+      const homeValue = getMockHomeValue(userAddress);
+      const equity    = Math.max(homeValue - userDebt, 0);
+      const raw       = Math.floor(equity * 0.20);
+      // Cap at $600K, floor at $25K if there's any equity
+      return equity > 0 ? Math.min(Math.max(raw, 25000), 600000) : 0;
+    }
+
+    function formatCurrency(n) {
+      if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+      if (n >= 1000)    return '$' + Math.round(n / 1000) + 'K';
+      return '$' + n.toLocaleString();
+    }
+
+    // ── SCREEN 17: RESULTS ────────────────────────────────
+    function renderResults() {
+      document.getElementById('resultAmount').textContent = formatCurrency(qualifiedAmount);
+      const urgentSet = new Set(['today', 'week']);
+      document.getElementById('callbackText').textContent = urgentSet.has(selectedUrgency)
+        ? 'A Hometap specialist will reach out within the next 5 minutes to walk you through next steps.'
+        : 'A Hometap specialist will reach out within 1 business day to walk you through next steps.';
+    }
+
+    // ── INIT ───────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('addressInput').addEventListener('input', function () {
-        this.style.borderColor = '';
+      setupAddress();
+      setupDebt();
+      setupName();
+      setupPhone();
+      setupEmail();
+
+      // Set data-reason attributes on Screen 5 cards for pre-selection
+      const reasonKeys = ['debt','renovation','lifeevent','education','business','retirement'];
+      document.querySelectorAll('#reasonList .choice-card').forEach((card, i) => {
+        card.setAttribute('data-reason', reasonKeys[i]);
       });
     });
   </script>
