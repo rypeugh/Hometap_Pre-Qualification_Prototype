@@ -27,30 +27,27 @@ The case study identified three funnel stages:
 2. Pre-qual start ← **biggest drop: ~70% of visitors never start**
 3. Pre-qual completion → approval → settlement
 
-This prototype intervenes **between stage 1 and 2** by inserting a 3-screen education wizard that flows directly into a full pre-qual sequence. The flow is 17 screens + 1 exit screen, in two phases:
+This prototype intervenes **between stage 1 and 2** with a 13-screen pre-qual flow. The flow is **13 screens + 1 exit screen**.
 
-**Education phase (Screens 1–3):**
-1. **Use Case Selector** — 6 options, auto-advances on tap
-2. **Comparison Table** — HEI vs. HELOC vs. Home Equity Loan, personalized by use case
-3. **Benefits Summary** — 3 benefit cards + customer quote
+**Note on screen IDs:** HTML IDs (`screen-1`, `screen-2`, etc.) do not match visual step order — navigation is handled entirely via `goTo(n)` and the `pct` map. Do not assume ID = step number.
 
-**Pre-qual phase (Screens 4–17 + exit):**
-4. **Interstitial** — "Access your home equity with no monthly payment"
-5. **Use case confirmation** — pre-filled from Screen 1, changeable
-6. **Amount range selector**
-7. **Urgency selector** — stored for Screen 17 callback copy
-8. **Education statement** — HEI vs. HELOC monthly payment comparison
-9. **HEI interstitial** — Laura quote + dark hero
-10. **Address entry** — mock autocomplete
-11. **Property type** — "Investment property" routes to exit screen
-12. **Estimated debt entry**
-13. **Name**
-14. **Phone + TCPA disclaimer**
-15. **Email**
-16. **Loading animation** — auto-advances after ~3.4s
-17. **Results** — dynamic amount + urgency-reactive callback copy
+| Step | HTML ID | Screen |
+|------|---------|--------|
+| 1 | screen-1 | **Interstitial** — "Your home built the equity. You should decide how to access it." + 01/02/03 steps + Trustpilot proof |
+| 2 | screen-3 | **Amount** — "How much money are you looking for?" — auto-advances |
+| 3 | screen-2 | **Use case** — "How do you plan to use the money?" — auto-advances |
+| 4 | screen-4 | **Urgency** — "How soon do you need the money?" — auto-advances |
+| 5 | screen-6 | **HEI Interstitial** — Laura quote + dark hero card |
+| 6 | screen-7 | **Address** — "Where is your home located?" — mock autocomplete |
+| 7 | screen-8 | **Property type** — "How would you describe it?" — "Investment property" → exit; auto-advances |
+| 8 | screen-9 | **Debt** — "What is the estimated debt on your home?" |
+| 9 | screen-10 | **Name** |
+| 10 | screen-11 | **Phone** + TCPA disclaimer |
+| 11 | screen-12 | **Email** |
+| 12 | screen-13 | **Loading** — auto-advances after ~3.4s |
+| 13 | screen-14 | **Results** — dynamic amount + urgency-reactive callback copy |
 
-**Exit screen:** Investment property ineligible — graceful dead-end with return home.
+**Exit screen (screen-exit):** Investment property ineligible — graceful dead-end with return home.
 
 ### Tech stack
 
@@ -67,6 +64,8 @@ This prototype intervenes **between stage 1 and 2** by inserting a 3-screen educ
 Full token spec is in [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md). All values sourced from Hometap's homepage HTML. Do not change hex values without explicit instruction.
 
 **Nav pattern:** White background (`--bg`), logo left, "Log in" link right, no CTA button. Matches Hometap's mobile app pattern. Do not re-add a CTA to the nav.
+
+**Social proof pattern:** Trustpilot proof card used as a compact footnote above the CTA on entry/landing screens. Layout (top to bottom): logo row (green star icon + "Trustpilot" wordmark in `#191919`), star blocks row (five 16px green square stars + rating text), short italic quote, reviewer name + date. Card: `border: 1px solid var(--border)`, `border-radius: var(--radius)`, `padding: 10px 14px`. All text at footnote scale (11–13px). Do not expand this into a featured testimonial section.
 
 ### Use case options
 
@@ -105,11 +104,11 @@ These are binding for every screen. Apply before writing or editing any copy or 
 
 3. **Copy concise and scannable.** Use plain, direct language. Lead with the most important word. Avoid filler phrases like "Here's how," "Based on your goal," or "We'll show you."
 
-4. **Single-select auto-advances.** Screens 1, 5, 6, 7, and 11 auto-advance on tap after 280ms (enough for visual confirmation). No separate "Continue" button on any selection screen. Do not add a confirm step.
+4. **Single-select auto-advances.** Steps 2, 3, 4, and 7 (screen-3, screen-2, screen-4, screen-8) auto-advance on tap after 280ms (enough for visual confirmation). No separate "Continue" button on any selection screen. Do not add a confirm step.
 
-5. **Progress indicator is a single full-width thin line** (`3px`, `--primary` fill, `--primary-mid` track). No step dots, no labels. Advances proportionally across all 17 screens. Nav is logo left + Log in right — no CTA, no extra elements.
+5. **Progress indicator is a single full-width thin line** (`3px`, `--primary` fill, `--primary-mid` track). No step dots, no labels. Advances proportionally across all 13 screens via the `pct` map in JS. Nav is logo left + Log in right — no CTA, no extra elements.
 
-6. **CTAs always above the fold on mobile.** Reference device: iPhone 13 (390 × 844 CSS px). On all screens with a CTA (Screens 2, 3, 8, 9, 10, 12, 13, 14, 15), the primary CTA uses `position: fixed; bottom: 0` on mobile via the `.screen-cta` wrapper class. Screen container gets `padding-bottom: 120px` on mobile to prevent content hiding behind the bar.
+6. **CTAs always above the fold on mobile.** Reference device: iPhone 13 (390 × 844 CSS px). On all screens with a CTA (screen-6, screen-7, screen-9, screen-10, screen-11, screen-12), the primary CTA uses `position: fixed; bottom: 0` on mobile via the `.screen-cta` wrapper class. Screen container gets `padding-bottom: 120px` on mobile to prevent content hiding behind the bar.
 
 ---
 
@@ -157,29 +156,25 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ### What I'm building right now
 
-Full 17-screen pre-qualification flow complete (Screens 1–17 + investment property exit screen). Education flow (Screens 1–3) feeds directly into pre-qual flow (Screens 4–17) — Screen 4 is now the interstitial, not the old pre-qual form mockup. Prototype is demo-ready end-to-end.
+13-screen pre-qual flow + exit screen. Screen 1 (interstitial/landing) redesigned this session. Flow is demo-ready end-to-end pending iPhone 13 viewport validation.
 
 ### Known issues / things on fire
 
-- Not yet validated on iPhone 13 viewport (390×844) — do a manual scroll check on Screens 9 (dark hero) and 17 (results) before demo.
-- Loading screen (Screen 16) resets if you navigate back via browser — acceptable for prototype, worth noting if demoed on a fresh load each time.
+- iPhone 13 viewport (390×844) not yet validated — scroll check needed on screen-6 (HEI dark hero) and screen-14 (results) before demo.
+- Loading screen (screen-13) resets on browser back-nav — acceptable for prototype.
 
 ### Open questions / decisions pending
 
-- Should the comparison table include a "Learn more" expandable row per option, or keep it flat?
+- Comparison table: expandable "Learn more" rows per option, or keep flat?
 
-### Recent changes worth remembering
+### Recent changes worth remembering (session 5)
 
-- Flow expanded from 4 → 17 screens + exit. Screen 4 is now the interstitial ("Access your home equity with no monthly payment").
-- New state variables: `selectedAmount`, `selectedUrgency`, `userAddress`, `userDebt`, `userFirstName`, `userLastName`, `userPhone`, `userEmail`, `qualifiedAmount`.
-- Screen 5 pre-selects the use case from Screen 1; user can change it.
-- Screens 5, 6, 7, 11 auto-advance on tap (280ms) — same pattern as Screen 1.
-- Screen 11: "Investment property" routes to exit screen; primary/secondary continue to Screen 12.
-- Screen 16 loading animates 3 items sequentially, then auto-advances to results.
-- Screen 17 result amount = mock Zillow estimate − debt × 20%, capped at $600K.
-- Screen 17 callback copy is urgency-reactive: "5 minutes" if Today/Within a week; "1 business day" otherwise.
-- Screen 14 includes TCPA disclaimer (locked — do not remove).
-- Education statement on Screen 8 replaced the yes/no monthly payment question.
+- **screen-1 redesigned:** heading updated to "Your home built the equity. You should decide how to access it.", hero icon removed, hero card border removed, icon step row replaced with 01/02/03 numbered steps, Trustpilot compact proof card added above CTA (Julio Fuertes review, May 1 2026).
+- **Flow resequenced:** Amount (screen-3) → Use Case (screen-2) → Urgency (screen-4). Screen HTML IDs unchanged; `goTo()` calls and `pct` map updated.
+- **Education Statement screen removed** (was screen-5). Total now: 13 screens + exit.
+- **4 header copy changes:** "How do you plan to use the money?" / "How much money are you looking for?" / "Where is your home located?" / "What is the estimated debt on your home?"
+- Result amount = mock Zillow estimate − debt × 20%, capped at $600K. Callback copy urgency-reactive: "5 minutes" if Today/Within a week, "1 business day" otherwise.
+- TCPA disclaimer on screen-11 is locked — do not remove.
 - Purple (`#6A5CF7`) is heading accent, NOT a CTA color. Blue (`#366CED`) for buttons/links.
 
 ### Snippets / reference URLs for this phase
@@ -201,4 +196,4 @@ Full 17-screen pre-qualification flow complete (Screens 1–17 + investment prop
 
 ---
 
-*Last updated: 2026-05-21 (session 4)*
+*Last updated: 2026-05-26 (session 5)*
