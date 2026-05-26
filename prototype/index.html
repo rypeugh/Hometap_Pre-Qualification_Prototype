@@ -64,9 +64,9 @@
     /* ── SCREEN CONTAINER ────────────────────────────────── */
     .screen-container {
       flex: 1; display: flex; flex-direction: column;
-      align-items: center; padding: 32px 20px 72px;
+      align-items: center; padding: 32px 20px 120px;
     }
-    .screen { display: none; width: 100%; max-width: 580px; animation: fadeUp 0.28s ease; }
+    .screen { display: none; width: 100%; max-width: 580px; margin: 0 auto; animation: fadeUp 0.28s ease; }
     .screen.active { display: block; }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
@@ -359,8 +359,13 @@
       margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);
     }
 
-    /* ── SCREEN CTA WRAPPER ──────────────────────────────── */
-    .screen-cta { margin-top: 8px; }
+    /* ── SCREEN CTA WRAPPER — always fixed at bottom ────── */
+    .screen-cta {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      padding: 12px 20px 24px; background: #fff;
+      border-top: 1px solid var(--border); z-index: 40;
+    }
+    .screen-cta .btn-primary { max-width: 580px; margin: 0 auto; display: block; }
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 640px) {
@@ -370,14 +375,41 @@
       .result-amount { font-size: 44px; }
       .interstitial-hero h2 { font-size: 22px; }
       .hei-hero h2 { font-size: 22px; }
-
-      .screen-cta {
-        position: fixed; bottom: 0; left: 0; right: 0;
-        padding: 12px 16px 24px; background: #fff;
-        border-top: 1px solid var(--border); z-index: 40;
-      }
-      .screen-cta .btn-primary { margin-top: 0; }
+      .screen-cta { padding: 12px 16px 24px; }
     }
+
+    /* ── OTP (2FA) INPUTS ────────────────────────────────── */
+    .otp-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 24px; }
+    .otp-input {
+      width: 46px; height: 58px; text-align: center; font-size: 22px; font-weight: 700;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; color: var(--text);
+      outline: none; transition: border-color 0.15s, background 0.15s; background: var(--bg);
+    }
+    .otp-input:focus { border-color: var(--primary); }
+    .otp-input.filled { border-color: var(--primary); background: var(--primary-light); }
+    .otp-resend { text-align: center; font-size: 14px; color: var(--text-sub); margin-bottom: 16px; }
+    .otp-resend a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .otp-resend a:hover { text-decoration: underline; }
+
+    /* ── SOCIAL AUTH (Email screen) ──────────────────────── */
+    .auth-divider {
+      display: flex; align-items: center; gap: 12px; margin: 20px 0 16px;
+    }
+    .auth-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .auth-divider-text { font-size: 13px; color: var(--text-light); font-weight: 500; }
+    .btn-social {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 13px 16px; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; border: 1.5px solid var(--border); margin-bottom: 10px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-google { background: #fff; color: #3c4043; border-color: #dadce0; }
+    .btn-google:hover { background: #f8f9fa; border-color: #c6c9cc; }
+    .btn-apple { background: #000; color: #fff; border-color: #000; }
+    .btn-apple:hover { background: #1c1c1c; }
+
   </style>
 </head>
 
@@ -650,7 +682,7 @@
       <button class="btn-back" onclick="goTo(9)">← Back</button>
       <h2 class="screen-title">What's <span class="accent">your name?</span></h2>
 
-      <div class="row-2">
+      <div>
         <div class="form-group">
           <label class="form-label">First name</label>
           <input class="form-input" type="text" id="firstNameInput" placeholder="First name" aria-label="First name" />
@@ -671,6 +703,7 @@
     <div class="screen" id="screen-11">
       <button class="btn-back" onclick="goTo(10)">← Back</button>
       <h2 class="screen-title">What's your <span class="accent">phone number?</span></h2>
+      <p class="screen-sub">We'll text you a security code to verify it's you</p>
 
       <div class="form-group">
         <label class="form-label">Mobile number</label>
@@ -687,6 +720,29 @@
     </div>
 
 
+
+    <!-- ═══ SCREEN 15: 2FA VERIFICATION ═══ -->
+    <div class="screen" id="screen-15">
+      <button class="btn-back" onclick="goTo(11)">← Back</button>
+      <h2 class="screen-title">Enter your <span class="accent">verification code</span></h2>
+      <p class="screen-sub" id="otpSubtext">We sent a 6-digit code to your phone.</p>
+
+      <div class="otp-group" id="otpGroup">
+        <input class="otp-input" type="tel" maxlength="1" id="otp0" aria-label="Digit 1" />
+        <input class="otp-input" type="tel" maxlength="1" id="otp1" aria-label="Digit 2" />
+        <input class="otp-input" type="tel" maxlength="1" id="otp2" aria-label="Digit 3" />
+        <input class="otp-input" type="tel" maxlength="1" id="otp3" aria-label="Digit 4" />
+        <input class="otp-input" type="tel" maxlength="1" id="otp4" aria-label="Digit 5" />
+        <input class="otp-input" type="tel" maxlength="1" id="otp5" aria-label="Digit 6" />
+      </div>
+
+      <p class="otp-resend">Didn't get a code? <a href="#" onclick="resendCode(event)">Resend</a></p>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="otpCta" onclick="submitOtp()" disabled>Verify →</button>
+      </div>
+    </div>
+
     <!-- ═══ SCREEN 12: EMAIL ═══ -->
     <div class="screen" id="screen-12">
       <button class="btn-back" onclick="goTo(11)">← Back</button>
@@ -701,6 +757,24 @@
         <span class="privacy-icon"><i class="fa-solid fa-lock"></i></span>
         <span>Your information is encrypted and never sold. <a href="#" style="color:var(--primary)">Privacy Policy</a></span>
       </div>
+
+      <div class="auth-divider">
+        <span class="auth-divider-line"></span>
+        <span class="auth-divider-text">or</span>
+        <span class="auth-divider-line"></span>
+      </div>
+
+      <button class="btn-social btn-google" onclick="selectSocialAuth('google')" aria-label="Continue with Google">
+        <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg> Continue with Google
+      </button>
+      <button class="btn-social btn-apple" onclick="selectSocialAuth('apple')" aria-label="Continue with Apple">
+        <i class="fa-brands fa-apple"></i> Continue with Apple
+      </button>
 
       <div class="screen-cta">
         <button class="btn-primary" id="emailCta" onclick="startLoading()" disabled>Get your estimate →</button>
@@ -726,6 +800,10 @@
         </div>
         <div class="loading-item" id="load3">
           <div class="loading-dot" id="dot3"></div>
+          <div class="loading-item-text">Determining your home's estimated value</div>
+        </div>
+        <div class="loading-item" id="load4">
+          <div class="loading-dot" id="dot4"></div>
           <div class="loading-item-text">Estimating your investment amount</div>
         </div>
       </div>
@@ -785,7 +863,7 @@
     let qualifiedAmount = 0;
 
     // ── PROGRESS — 14 screens ─────────────────────────────
-    const pct = { 1:7, 3:15, 2:23, 4:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 12:85, 13:92, 14:100 };
+    const pct = { 1:7, 3:15, 2:23, 4:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 15:81, 12:85, 13:92, 14:100 };
 
     // ── NAVIGATION ─────────────────────────────────────────
     function goTo(n) {
@@ -796,6 +874,7 @@
         document.getElementById('progressFill').style.width = pct[n] + '%';
       }
       if (n === 14) renderResults();
+      if (n === 15) { setTimeout(() => { const f = document.getElementById('otp0'); if (f) f.focus(); }, 120); }
     }
 
     function goToExit() {
@@ -881,10 +960,17 @@
     function setupDebt() {
       const input = document.getElementById('debtInput');
       const cta   = document.getElementById('debtCta');
-      input.addEventListener('input', function() {
+      function validate() {
+        cta.disabled = input.value.replace(/[^0-9]/g, '').length === 0;
+      }
+      // No value rewrite during typing — programmatic value changes on fixed-position
+      // pages can invalidate click regions in some browsers until next repaint
+      input.addEventListener('input', validate);
+      input.addEventListener('keyup', validate);
+      // Format with commas only once the user moves on
+      input.addEventListener('blur', function() {
         const raw = this.value.replace(/[^0-9]/g, '');
         this.value = raw ? parseInt(raw, 10).toLocaleString() : '';
-        cta.disabled = raw.length === 0;
       });
     }
 
@@ -931,7 +1017,13 @@
       const digits = document.getElementById('phoneInput').value.replace(/\D/g, '');
       if (digits.length < 10) return;
       userPhone = digits;
-      goTo(12);
+      // Show formatted number in the 2FA screen sub-text
+      const fmt = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+      document.getElementById('otpSubtext').textContent = 'We sent a 6-digit code to ' + fmt + '.';
+      // Reset any previously-entered OTP
+      document.querySelectorAll('.otp-input').forEach(i => { i.value = ''; i.classList.remove('filled'); });
+      document.getElementById('otpCta').disabled = true;
+      goTo(15);
     }
 
     // ── SCREEN 12: EMAIL ──────────────────────────────────
@@ -943,6 +1035,56 @@
       });
     }
 
+    // ── SCREEN 15: 2FA OTP ───────────────────────────────
+    function setupOtp() {
+      const inputs = Array.from(document.querySelectorAll('.otp-input'));
+      const cta = document.getElementById('otpCta');
+      inputs.forEach((input, idx) => {
+        input.addEventListener('input', function() {
+          this.value = this.value.replace(/\D/g, '').slice(0, 1);
+          this.classList.toggle('filled', this.value.length > 0);
+          if (this.value && idx < inputs.length - 1) inputs[idx + 1].focus();
+          const allFilled = inputs.every(i => i.value.length === 1);
+          cta.disabled = !allFilled;
+          if (allFilled) setTimeout(() => submitOtp(), 280); // auto-advance
+        });
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Backspace' && !this.value && idx > 0) inputs[idx - 1].focus();
+        });
+        input.addEventListener('paste', function(e) {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+          pasted.split('').forEach((ch, i) => {
+            if (inputs[idx + i]) { inputs[idx + i].value = ch; inputs[idx + i].classList.add('filled'); }
+          });
+          const next = inputs[Math.min(idx + pasted.length, inputs.length - 1)];
+          if (next) next.focus();
+          cta.disabled = !inputs.every(i => i.value.length === 1);
+        });
+      });
+    }
+
+    function submitOtp() {
+      const inputs = Array.from(document.querySelectorAll('.otp-input'));
+      if (!inputs.every(i => i.value.length === 1)) return;
+      goTo(12);
+    }
+
+    function resendCode(e) {
+      e.preventDefault();
+      const inputs = document.querySelectorAll('.otp-input');
+      inputs.forEach(i => { i.value = ''; i.classList.remove('filled'); });
+      document.getElementById('otpCta').disabled = true;
+      inputs[0].focus();
+    }
+
+    // ── SCREEN 12: SOCIAL AUTH ────────────────────────────
+    function selectSocialAuth(provider) {
+      const mockEmail = provider === 'google' ? 'user@gmail.com' : 'user@icloud.com';
+      document.getElementById('emailInput').value = mockEmail;
+      startLoading();
+    }
+
     // ── SCREEN 13: LOADING ────────────────────────────────
     function startLoading() {
       const emailVal = document.getElementById('emailInput').value.trim();
@@ -951,8 +1093,8 @@
       qualifiedAmount = calculateQualification();
       goTo(13);
 
-      const items = ['load1', 'load2', 'load3'];
-      const dots  = ['dot1',  'dot2',  'dot3'];
+      const items = ['load1', 'load2', 'load3', 'load4'];
+      const dots  = ['dot1',  'dot2',  'dot3',  'dot4'];
       items.forEach((id, i) => {
         setTimeout(() => {
           const item = document.getElementById(id);
@@ -968,7 +1110,7 @@
         }, i * 950);
       });
 
-      setTimeout(() => goTo(14), 3400);
+      setTimeout(() => goTo(14), 3800);
     }
 
     // ── MOCK QUALIFICATION CALC ───────────────────────────
@@ -1011,6 +1153,7 @@
       setupName();
       setupPhone();
       setupEmail();
+      setupOtp();
     });
   </script>
 
