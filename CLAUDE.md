@@ -33,7 +33,7 @@ This prototype intervenes **between stage 1 and 2** with a 14-screen pre-qual fl
 
 | Step | HTML ID | Screen |
 |------|---------|--------|
-| 1 | screen-1 | **Interstitial** — "Your home built the equity. You should decide how to access it." + 01/02/03 steps + Trustpilot proof |
+| 1 | screen-1 | **Interstitial** — "Get up to $600k from your home equity. No monthly payments." ($600k in `--purple`) + 01/02/03 steps + Trustpilot proof + "See my offer →" CTA |
 | 2 | screen-3 | **Amount** — "How much money are you looking for?" — auto-advances |
 | 3 | screen-2 | **Use case** — "How do you plan to use the money?" — auto-advances |
 | 4 | screen-4 | **Urgency** — "How soon do you need the money?" — auto-advances |
@@ -67,6 +67,8 @@ This prototype intervenes **between stage 1 and 2** with a 14-screen pre-qual fl
 Full token spec is in [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md). All values sourced from Hometap's homepage HTML. Do not change hex values without explicit instruction.
 
 **Nav pattern:** White background (`--bg`), logo left, "Log in" link right, no CTA button. Matches Hometap's mobile app pattern. Do not re-add a CTA to the nav.
+
+**Purple-highlight pattern:** Use `<span style="color:var(--purple)">` to call out key dollar amounts or figures in headlines (e.g. `$600k` on screen-1). Do not apply to body copy or labels.
 
 **Social proof pattern:** Trustpilot proof card used as a compact footnote above the CTA on entry/landing screens. Layout (top to bottom): logo row (green star icon + "Trustpilot" wordmark in `#191919`), star blocks row (five 16px green square stars + rating text), short italic quote, reviewer name only. Card: `border: 1px solid var(--border)`, `border-radius: var(--radius)`, `padding: 10px 14px`. All text at footnote scale (11–13px). Do not expand this into a featured testimonial section.
 
@@ -161,7 +163,7 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ### What I'm building right now
 
-14-screen pre-qual flow + exit screen, demo-ready end-to-end. Desktop phone frame (session 7) centers the prototype inside a phone shell on a dark background — screen-share-ready on any desktop browser without setup.
+14-screen pre-qual flow + exit screen, demo-ready end-to-end. Session 8 refreshed screen-1 copy: new value-prop headline ("Get up to $600k from your home equity. No monthly payments." with $600k in `--purple`), reworked 01/02/03 step labels/descriptions, and CTA updated to "See my offer →".
 
 ### Known issues / things on fire
 
@@ -191,4 +193,4 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ---
 
-*Last updated: 2026-05-26 (session 7)*
+*Last updated: 2026-05-26 (session 8)*
