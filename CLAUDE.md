@@ -68,9 +68,9 @@ Full token spec is in [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md). All valu
 
 **Nav pattern:** White background (`--bg`), logo left, "Log in" link right, no CTA button. Matches Hometap's mobile app pattern. Do not re-add a CTA to the nav.
 
-**Social proof pattern:** Trustpilot proof card used as a compact footnote above the CTA on entry/landing screens. Layout (top to bottom): logo row (green star icon + "Trustpilot" wordmark in `#191919`), star blocks row (five 16px green square stars + rating text), short italic quote, reviewer name + date. Card: `border: 1px solid var(--border)`, `border-radius: var(--radius)`, `padding: 10px 14px`. All text at footnote scale (11–13px). Do not expand this into a featured testimonial section.
+**Social proof pattern:** Trustpilot proof card used as a compact footnote above the CTA on entry/landing screens. Layout (top to bottom): logo row (green star icon + "Trustpilot" wordmark in `#191919`), star blocks row (five 16px green square stars + rating text), short italic quote, reviewer name only. Card: `border: 1px solid var(--border)`, `border-radius: var(--radius)`, `padding: 10px 14px`. All text at footnote scale (11–13px). Do not expand this into a featured testimonial section.
 
-**CTA pattern:** `.screen-cta` is always `position: fixed; bottom: 0` on all viewport sizes. Button inside is capped at `max-width: 580px; margin: 0 auto`. Screen container always has `padding-bottom: 120px`. Do not revert to in-flow CTAs.
+**CTA pattern:** `.screen-cta` is `position: fixed; bottom: 0` on mobile. On desktop, it switches to `position: sticky; bottom: 0` inside the `.phone-inner` scroll container (required for the phone frame wrapper). Button inside is capped at `max-width: 580px; margin: 0 auto`. Mobile screen container has `padding-bottom: 120px` to prevent content hiding behind the fixed bar. Do not revert to in-flow CTAs.
 
 ### Use case options
 
@@ -113,7 +113,7 @@ These are binding for every screen. Apply before writing or editing any copy or 
 
 5. **Progress indicator is a single full-width thin line** (`3px`, `--primary` fill, `--primary-mid` track). No step dots, no labels. Advances proportionally across all 14 screens via the `pct` map in JS. Nav is logo left + Log in right — no CTA, no extra elements.
 
-6. **CTAs always above the fold.** `.screen-cta` is `position: fixed; bottom: 0` on all viewport sizes. Screen container has `padding-bottom: 120px` everywhere to prevent content hiding behind the bar.
+6. **CTAs always above the fold.** `.screen-cta` is `position: fixed; bottom: 0` on mobile; `position: sticky; bottom: 0` on desktop (inside the phone frame). Mobile screen container has `padding-bottom: 120px` to prevent content hiding behind the bar.
 
 ---
 
@@ -161,7 +161,7 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ### What I'm building right now
 
-14-screen pre-qual flow + exit screen. Flow is demo-ready end-to-end. 2FA screen, social auth on email, and global fixed-CTA alignment added this session.
+14-screen pre-qual flow + exit screen, demo-ready end-to-end. Desktop phone frame (session 7) centers the prototype inside a phone shell on a dark background — screen-share-ready on any desktop browser without setup.
 
 ### Known issues / things on fire
 
@@ -172,19 +172,7 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 - Comparison table: expandable "Learn more" rows per option, or keep flat?
 
-### Recent changes worth remembering (session 6)
-
-- **Screen-15 (2FA) added:** 6-box OTP screen between phone (screen-11) and email (screen-12). Auto-tabs between boxes, auto-advances on 6th digit (280ms), resend link. Phone number shown in sub-text. `submitPhone()` routes to screen-15; email back button routes to screen-11.
-- **Email screen social auth:** Google + Apple buttons below "or" divider. Google uses inline multicolor SVG (not FA icon). Apple uses `fa-brands fa-apple`. Both call `selectSocialAuth(provider)` → sets mock email → `startLoading()`.
-- **Fixed CTA:** `.screen-cta` always `position: fixed`, button capped at `max-width: 580px; margin: 0 auto`. Container bottom padding 120px everywhere.
-- **Loading sequence:** 4 items. New item 3: "Determining your home's estimated value." Auto-advance timing extended to 3.8s.
-- **Debt input fix:** Validates on `input`/`keyup`, formats on `blur` only. (Live reformatting was invalidating hit-test regions on fixed CTA.)
-- **Name screen:** First/Last now stacked vertically (was horizontal row-2).
-- **Phone screen:** Sub-text added: "We'll text you a security code to verify it's you."
-- TCPA disclaimer on screen-11 is locked — do not remove.
-- Purple (`#6A5CF7`) is heading accent, NOT a CTA color. Blue (`#366CED`) for buttons/links.
-
-### Snippets / reference URLs for this phase
+### Snippets / reference URLs
 
 - GitHub repo: `https://github.com/rypeugh/Hometap_Pre-Qualification_Prototype`
 - Preview server: `npx serve prototype -p 3333` → open `http://localhost:3333`
@@ -203,4 +191,4 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ---
 
-*Last updated: 2026-05-26 (session 6)*
+*Last updated: 2026-05-26 (session 7)*

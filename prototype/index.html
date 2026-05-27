@@ -410,10 +410,29 @@
     .btn-apple { background: #000; color: #fff; border-color: #000; }
     .btn-apple:hover { background: #1c1c1c; }
 
+    /* ── DESKTOP PHONE FRAME ─────────────────────────────── */
+    @media (min-width: 641px) {
+      html, body { height: 100vh; overflow: hidden; background: #1a1a1a; }
+      body { flex-direction: row; align-items: center; justify-content: center; }
+      .phone-shell {
+        width: 390px; height: 844px; border-radius: 44px; overflow: hidden; flex-shrink: 0;
+        box-shadow: 0 0 0 8px #252525, 0 0 0 11px #3e3e3e, 0 40px 100px rgba(0,0,0,0.65);
+      }
+      .phone-inner {
+        height: 100%; overflow-y: auto; overflow-x: hidden;
+        scrollbar-width: none; display: flex; flex-direction: column; background: var(--bg);
+      }
+      .phone-inner::-webkit-scrollbar { display: none; }
+      .screen-container { padding-bottom: 0; }
+      .screen-cta { position: sticky; bottom: 0; left: unset; right: unset; width: 100%; }
+    }
+
   </style>
 </head>
 
 <body>
+
+  <div class="phone-shell"><div class="phone-inner">
 
   <nav class="nav">
     <div class="nav-inner">
@@ -489,7 +508,7 @@
           </span>
         </div>
         <p class="tp-blockquote">"I recommend Hometap instead of traditional refi and HELOC."</p>
-        <div class="tp-reviewer">Julio Fuertes · May 1, 2026</div>
+        <div class="tp-reviewer">Julio Fuertes</div>
       </div>
 
       <div class="screen-cta">
@@ -848,6 +867,7 @@
 
   </div><!-- /screen-container -->
 
+  </div></div><!-- /phone-inner /phone-shell -->
 
   <script>
     // ── STATE ──────────────────────────────────────────────
