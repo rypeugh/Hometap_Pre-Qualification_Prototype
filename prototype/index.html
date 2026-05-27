@@ -196,19 +196,16 @@
     .edu-compare-item.good i { color: var(--success); }
 
     /* ── SCREEN 6: HEI INTERSTITIAL ─────────────────────── */
-    .hei-hero {
-      background: var(--purple-section); border-radius: var(--radius-xl);
-      padding: 32px 24px; margin-bottom: 24px; color: #fff;
-    }
+    .hei-content { margin-bottom: 24px; }
     .hei-hero-eyebrow {
       font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-      color: rgba(255,255,255,0.65); margin-bottom: 12px;
+      color: rgba(255,255,255,0.6); margin-bottom: 12px;
     }
-    .hei-hero h2 {
+    .hei-content h2 {
       font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700;
       line-height: 1.3; color: #fff; margin-bottom: 12px;
     }
-    .hei-hero p { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+    .hei-content p { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; }
     .quote-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; }
     .quote-mark { color: var(--purple); font-size: 28px; font-family: Georgia, serif; line-height: 1; margin-bottom: 10px; }
     .quote-text { font-size: 15px; color: var(--text); line-height: 1.65; margin-bottom: 14px; font-style: italic; }
@@ -221,6 +218,19 @@
     .tp-logo { font-size: 12px; font-weight: 700; color: #00B67A; }
     .tp-stars { color: #00B67A; font-size: 12px; letter-spacing: 1px; }
     .tp-score { font-size: 12px; color: var(--text-sub); }
+
+    /* ── SCREEN 6: DARK SCREEN ───────────────────────────── */
+    .is-dark-screen .phone-inner { background: var(--purple-section); }
+    @media (max-width: 640px) { .is-dark-screen { background: var(--purple-section); } }
+    .is-dark-screen .screen-cta { background: var(--purple-section); border-top-color: rgba(255,255,255,0.15); }
+    #screen-6 .btn-back { color: rgba(255,255,255,0.65); }
+    #screen-6 .btn-back:hover { color: #fff; }
+    #screen-6 .quote-card { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+    #screen-6 .quote-mark { color: rgba(255,255,255,0.35); }
+    #screen-6 .quote-text { color: rgba(255,255,255,0.9); }
+    #screen-6 .quote-attribution { color: #fff; }
+    #screen-6 .tp-row { border-top-color: rgba(255,255,255,0.15); }
+    #screen-6 .tp-score { color: rgba(255,255,255,0.6); }
     .tp-footer {
       display: flex; align-items: center; justify-content: center; gap: 6px;
       margin-top: 20px; font-size: 13px; color: var(--text-sub);
@@ -368,7 +378,7 @@
       .screen-title { font-size: 25px; }
       .result-amount { font-size: 44px; }
       .interstitial-hero h2 { font-size: 22px; }
-      .hei-hero h2 { font-size: 22px; }
+      .hei-content h2 { font-size: 22px; }
       .screen-cta { padding: 12px 16px 24px; }
     }
 
@@ -513,7 +523,7 @@
 
     <!-- ═══ SCREEN 2: WHY DO YOU NEED CASH ═══ -->
     <div class="screen" id="screen-2">
-      <button class="btn-back" onclick="goTo(3)">← Back</button>
+      <button class="btn-back" onclick="goTo(4)">← Back</button>
       <h2 class="screen-title">How do you plan to <span class="accent">use the money?</span></h2>
       <div class="choice-list" id="reasonList">
         <div class="choice-card" onclick="selectReason('debt',this)">
@@ -575,7 +585,7 @@
 
     <!-- ═══ SCREEN 4: HOW SOON ═══ -->
     <div class="screen" id="screen-4">
-      <button class="btn-back" onclick="goTo(2)">← Back</button>
+      <button class="btn-back" onclick="goTo(3)">← Back</button>
       <h2 class="screen-title">How soon do you <span class="accent">need the money?</span></h2>
       <div class="choice-list" id="urgencyList">
         <div class="choice-card" onclick="selectUrgency('today',this)">
@@ -600,19 +610,16 @@
 
     <!-- ═══ SCREEN 6: HEI INTERSTITIAL ═══ -->
     <div class="screen" id="screen-6">
-      <button class="btn-back" onclick="goTo(4)">← Back</button>
+      <button class="btn-back" onclick="goTo(2)">← Back</button>
 
-      <div class="hei-hero">
-        <div class="hei-hero-eyebrow">Home Equity Investment</div>
-        <h2>Get up to $600K without a monthly payment</h2>
-        <p>You share a portion of your home's future appreciation — paid when you sell or after 10 years, whichever comes first.</p>
+      <div class="hei-content">
+        <h2 id="hei-header"></h2>
+        <p id="hei-subtext"></p>
       </div>
 
       <div class="quote-card">
-        <div class="quote-mark">"</div>
-        <div class="quote-text">I lost my job and had no way to pay my bills. With my Hometap investment I was able to get $30K, which allowed me to stay current on bills until I found my next job.</div>
-        <div class="quote-attribution">Laura S.</div>
-        <div class="quote-location">Austin, TX</div>
+        <div class="quote-text" id="hei-review"></div>
+        <div class="quote-attribution" id="hei-author"></div>
         <div class="tp-row">
           <span class="tp-logo">Trustpilot</span>
           <span class="tp-stars">★★★★★</span>
@@ -864,6 +871,46 @@
   </div></div><!-- /phone-inner /phone-shell -->
 
   <script>
+    // ── USE CASE DATA ───────────────────────────────────────
+    const useCases = {
+      debt: {
+        header: 'Debt wiped, without a new monthly payment',
+        subtext: 'Use your equity to clear debt — no new monthly payment adding to the pressure.',
+        author: 'John D.',
+        review: "Wanting to pay off debt without a new monthly payment, I'd spent considerable time researching different options. HomeTap clearly came out as the best. My consultant Chase was great from start to finish. From initial contact to funding took a little more than 3 weeks. If you're looking to tap equity without the burden of a new monthly payment, I'd highly recommend HomeTap."
+      },
+      renovation: {
+        header: 'Fund your renovation today. No monthly payment.',
+        subtext: 'Your home equity covers the project without adding to your monthly bills — focus on the work, not the financing.',
+        author: 'Jennifer',
+        review: "Nick from Hometap was amazing to work with and made the experience painless. We did a complete renovation on our house and it helped tremendously. We wouldn't have been able to do it without Hometap."
+      },
+      lifeevent: {
+        header: 'Handle the unexpected without taking on a new monthly payment.',
+        subtext: "When life throws a big expense at you, your home's equity can bridge the gap — no new debt stress.",
+        author: 'Ron',
+        review: "Hometap was a great source of equity funds to help with medical bills due to my Wife's stroke. Eric, the Hometap representative, was really great — his no pressure style made me feel like he was a friend more than a company representative. Hometap deserves all the positive reviews readers view online."
+      },
+      education: {
+        header: 'Cover tuition from your home equity — no student loan, no monthly payment.',
+        subtext: "Use what you've already built in your home to pay for school, without taking on new monthly debt.",
+        author: 'Kristine',
+        review: "I am now a repeat customer on my second home — I'm going back to school, so HomeTap is a great option for me. The process was even smoother and faster the second time around."
+      },
+      business: {
+        header: 'Get business capital today. No monthly payment, no DTI impact.',
+        subtext: 'Access the funds you need without adding monthly debt obligations or straining your cash flow.',
+        author: 'Jason G',
+        review: "As a small business owner, accessing capital without increasing monthly debt or impacting DTI is huge, and Hometap's model delivers exactly that. The entire process was transparent, thoughtful, and refreshingly human."
+      },
+      retirement: {
+        header: 'Stretch your retirement income without adding a monthly payment.',
+        subtext: 'Your home equity can fill the gap — with no new monthly obligation on a fixed budget.',
+        author: 'Vickie',
+        review: "Hometap has seriously changed my life. I'm 70 years old, no retirement to speak. I needed a loan and couldn't get one. Well, I came across an ad for Hometap — and it wasn't too good to be true. Eric helped me through it. A simple process. I have now made the repairs I needed, paid off bills, and have a nest egg."
+      }
+    };
+
     // ── STATE ──────────────────────────────────────────────
     let selectedKey     = null;
     let selectedAmount  = null;
@@ -877,16 +924,18 @@
     let qualifiedAmount = 0;
 
     // ── PROGRESS — 14 screens ─────────────────────────────
-    const pct = { 1:7, 3:15, 2:23, 4:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 15:81, 12:85, 13:92, 14:100 };
+    const pct = { 1:7, 3:15, 4:23, 2:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 15:81, 12:85, 13:92, 14:100 };
 
     // ── NAVIGATION ─────────────────────────────────────────
     function goTo(n) {
+      document.body.classList.toggle('is-dark-screen', n === 6);
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.getElementById('screen-' + n).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (pct[n] !== undefined) {
         document.getElementById('progressFill').style.width = pct[n] + '%';
       }
+      if (n === 6)  renderHEI();
       if (n === 14) renderResults();
       if (n === 15) { setTimeout(() => { const f = document.getElementById('otp0'); if (f) f.focus(); }, 120); }
     }
@@ -897,12 +946,21 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // ── SCREEN 6: PERSONALIZED INTERSTITIAL ───────────────
+    function renderHEI() {
+      const d = useCases[selectedKey] || useCases.debt;
+      document.getElementById('hei-header').textContent = d.header;
+      document.getElementById('hei-subtext').textContent = d.subtext;
+      document.getElementById('hei-review').textContent  = d.review;
+      document.getElementById('hei-author').textContent  = d.author;
+    }
+
     // ── SCREEN 2: REASON ──────────────────────────────────
     function selectReason(key, card) {
       document.querySelectorAll('#reasonList .choice-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       selectedKey = key;
-      setTimeout(() => goTo(4), 280);
+      setTimeout(() => goTo(6), 280);
     }
 
     // ── SCREEN 3: AMOUNT ──────────────────────────────────
@@ -910,7 +968,7 @@
       document.querySelectorAll('#amountList .choice-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       selectedAmount = key;
-      setTimeout(() => goTo(2), 280);
+      setTimeout(() => goTo(4), 280);
     }
 
     // ── SCREEN 4: URGENCY ─────────────────────────────────
@@ -918,7 +976,7 @@
       document.querySelectorAll('#urgencyList .choice-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       selectedUrgency = key;
-      setTimeout(() => goTo(6), 280);
+      setTimeout(() => goTo(2), 280);
     }
 
     // ── SCREEN 7: ADDRESS ─────────────────────────────────

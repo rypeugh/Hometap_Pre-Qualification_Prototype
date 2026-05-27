@@ -35,9 +35,9 @@ This prototype intervenes **between stage 1 and 2** with a 14-screen pre-qual fl
 |------|---------|--------|
 | 1 | screen-1 | **Interstitial** — "Get up to $600k from your home equity. No monthly payments." ($600k in `--purple`) + 01/02/03 steps + Trustpilot proof + "See my offer →" CTA |
 | 2 | screen-3 | **Amount** — "How much money are you looking for?" — auto-advances |
-| 3 | screen-2 | **Use case** — "How do you plan to use the money?" — auto-advances |
-| 4 | screen-4 | **Urgency** — "How soon do you need the money?" — auto-advances |
-| 5 | screen-6 | **HEI Interstitial** — Laura quote + dark hero card |
+| 3 | screen-4 | **Urgency** — "How soon do you need the money?" — auto-advances |
+| 4 | screen-2 | **Use case** — "How do you plan to use the money?" — auto-advances |
+| 5 | screen-6 | **HEI Interstitial** — personalized dark screen; header/sub-text/quote swap by `selectedKey` |
 | 6 | screen-7 | **Address** — "Where is your home located?" — mock autocomplete |
 | 7 | screen-8 | **Property type** — "How would you describe it?" — "Investment property" → exit; auto-advances |
 | 8 | screen-9 | **Debt** — "What is the estimated debt on your home?" |
@@ -50,7 +50,7 @@ This prototype intervenes **between stage 1 and 2** with a 14-screen pre-qual fl
 
 **Exit screen (screen-exit):** Investment property ineligible — graceful dead-end with return home.
 
-**pct map:** `{ 1:7, 3:15, 2:23, 4:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 15:81, 12:85, 13:92, 14:100 }`
+**pct map:** `{ 1:7, 3:15, 4:23, 2:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 15:81, 12:85, 13:92, 14:100 }`
 
 ### Tech stack
 
@@ -73,6 +73,8 @@ Full token spec is in [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md). All valu
 **Social proof pattern:** Trustpilot proof card used as a compact footnote above the CTA on entry/landing screens. Layout (top to bottom): logo row (green star icon + "Trustpilot" wordmark in `#191919`), star blocks row (five 16px green square stars + rating text), short italic quote, reviewer name only. Card: `border: 1px solid var(--border)`, `border-radius: var(--radius)`, `padding: 10px 14px`. All text at footnote scale (11–13px). Do not expand this into a featured testimonial section.
 
 **CTA pattern:** `.screen-cta` is `position: fixed; bottom: 0` on mobile. On desktop, it switches to `position: sticky; bottom: 0` inside the `.phone-inner` scroll container (required for the phone frame wrapper). Button inside is capped at `max-width: 580px; margin: 0 auto`. Mobile screen container has `padding-bottom: 120px` to prevent content hiding behind the fixed bar. Do not revert to in-flow CTAs.
+
+**Screen-6 dark pattern:** Screen-6 uses a full-bleed `--purple-section` background via `.is-dark-screen` class toggled on `body` by `goTo()`. No `.hei-hero` card — content sits directly on the dark surface. Quote card uses `background: rgba(255,255,255,0.08)`. CTA bar background matches. Desktop outer frame stays `#1a1a1a` (scoped via `@media max-width: 640px`). Do not add cards or white backgrounds to this screen.
 
 ### Use case options
 
@@ -97,7 +99,7 @@ Win rows (highlighted green for HEI advantage) are defined per use case in the J
 
 - **File structure:** Flat. Everything is in `prototype/index.html`. Do not split into multiple files.
 - **Naming:** `camelCase` for JS variables/functions; `kebab-case` for CSS classes; descriptive screen IDs (`screen-1`, `screen-2`, etc.)
-- **JS data object:** All use-case-specific content lives in the `useCases` object at the top of the `<script>` block — comparison text, highlighted rows, benefit cards, quote. Keep this as the single source of truth.
+- **JS data object:** All use-case-specific content lives in the `useCases` const at the top of the `<script>` block — `header`, `subtext`, `author`, `review` per use case key for screen-6, plus any future comparison text, highlighted rows, and benefit cards. Keep this as the single source of truth; do not hardcode content directly in HTML.
 - **No external libraries:** No jQuery, no chart libraries, no animation libraries. Vanilla only.
 - **Accessibility floor:** Semantic HTML, WCAG AA contrast, `alt` on images, `aria-label` on interactive elements.
 
@@ -163,11 +165,11 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ### What I'm building right now
 
-14-screen pre-qual flow + exit screen, demo-ready end-to-end. Session 8 refreshed screen-1 copy: new value-prop headline ("Get up to $600k from your home equity. No monthly payments." with $600k in `--purple`), reworked 01/02/03 step labels/descriptions, and CTA updated to "See my offer →".
+14-screen pre-qual flow + exit screen, demo-ready end-to-end. Session 9: navigation reordered (urgency now step 3, use case step 4), and screen-6 rebuilt as a full dark-screen personalized HEI interstitial — header, sub-text, and social proof quote all swap dynamically based on use case selection via the `useCases` const.
 
 ### Known issues / things on fire
 
-- iPhone 13 viewport (390×844) not yet validated — scroll check needed on screen-6 (HEI dark hero), screen-14 (results), and screen-15 (2FA) before demo.
+- iPhone 13 viewport (390×844) not yet validated — scroll check needed on screen-6 (dark hero), screen-14 (results), and screen-15 (2FA) before demo.
 - Loading screen (screen-13) resets on browser back-nav — acceptable for prototype.
 
 ### Open questions / decisions pending
@@ -193,4 +195,4 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ---
 
-*Last updated: 2026-05-26 (session 8)*
+*Last updated: 2026-05-26 (session 9)*
