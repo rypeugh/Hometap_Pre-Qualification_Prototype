@@ -27,30 +27,9 @@ The case study identified three funnel stages:
 2. Pre-qual start ← **biggest drop: ~70% of visitors never start**
 3. Pre-qual completion → approval → settlement
 
-This prototype intervenes **between stage 1 and 2** with a 14-screen pre-qual flow. The flow is **14 screens + 1 exit screen**.
+This prototype intervenes **between stage 1 and 2** with a 29-screen flow (14 pre-qual + 14 application + 1 exit). Full screen inventory and pct map: [`docs/SCREEN-MAP.md`](docs/SCREEN-MAP.md).
 
-**Note on screen IDs:** HTML IDs (`screen-1`, `screen-2`, etc.) do not match visual step order — navigation is handled entirely via `goTo(n)` and the `pct` map. Do not assume ID = step number.
-
-| Step | HTML ID | Screen |
-|------|---------|--------|
-| 1 | screen-1 | **Interstitial** — "Get up to $600k from your home equity. No monthly payments." ($600k in `--purple`) + 01/02/03 steps + Trustpilot proof + "See my offer →" CTA |
-| 2 | screen-3 | **Amount** — "How much money are you looking for?" — auto-advances |
-| 3 | screen-4 | **Urgency** — "How soon do you need the money?" — auto-advances |
-| 4 | screen-2 | **Use case** — "How do you plan to use the money?" — auto-advances |
-| 5 | screen-6 | **HEI Interstitial** — personalized dark screen; header/sub-text/quote swap by `selectedKey` |
-| 6 | screen-7 | **Address** — "Where is your home located?" — mock autocomplete |
-| 7 | screen-8 | **Property type** — "How would you describe it?" — "Investment property" → exit; auto-advances |
-| 8 | screen-9 | **Debt** — "What is the estimated debt on your home?" |
-| 9 | screen-10 | **Name** — First/Last stacked vertically |
-| 10 | screen-11 | **Phone** + TCPA disclaimer |
-| 11 | screen-15 | **2FA Verification** — 6-digit OTP, auto-advances on completion |
-| 12 | screen-12 | **Email** — manual entry + Google/Apple social auth options |
-| 13 | screen-13 | **Loading** — 4 items, auto-advances after ~3.8s |
-| 14 | screen-14 | **Results** — plain white header, `--purple` amount, dynamic CTA ("Get my $X →"), two pills (No monthly payments + use-case goal label), manager card, borderless next steps |
-
-**Exit screen (screen-exit):** Investment property ineligible — graceful dead-end with return home.
-
-**pct map:** `{ 1:7, 3:15, 4:23, 2:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 15:81, 12:85, 13:92, 14:100 }`
+**Note on screen IDs:** HTML IDs do not match visual step order — navigation is handled entirely via `goTo(n)` and the `pct` map. Do not assume ID = step number.
 
 ### Tech stack
 
@@ -58,7 +37,9 @@ This prototype intervenes **between stage 1 and 2** with a 14-screen pre-qual fl
 - **Styling approach:** Plain CSS with CSS custom properties (variables) for all design tokens; no Tailwind, no framework
 - **JavaScript:** Vanilla JS only; no build step, no npm, no modules
 - **Backend / data:** None — all content is hardcoded in JS objects
-- **State variables:** `selectedKey` (use case), `selectedAmount`, `selectedUrgency`, `userAddress`, `userDebt`, `userFirstName`, `userLastName`, `userPhone`, `userEmail`, `qualifiedAmount`. Navigation via `goTo(n)` + `goToExit()`.
+- **State variables (pre-qual):** `selectedKey`, `selectedAmount`, `selectedUrgency`, `userAddress`, `userDebt`, `userFirstName`, `userLastName`, `userPhone`, `userEmail`, `qualifiedAmount`
+- **State variables (application):** `userMaritalStatus`, `userMailingAddressSame`, `userMailingAddressCustom`, `appAnswers` (object, yes/no eligibility responses), `userEmploymentType`, `userAnnualIncome`, `userSSN`, `appSubmitted`
+- **Navigation:** `goTo(n)` + `goToExit()`. Application phase uses same function.
 - **Hosting:** Open `prototype/index.html` directly in a browser; or via `npx serve prototype` on port 3333
 - **Build step:** None
 
@@ -66,17 +47,21 @@ This prototype intervenes **between stage 1 and 2** with a 14-screen pre-qual fl
 
 Full token spec is in [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md). All values sourced from Hometap's homepage HTML. Do not change hex values without explicit instruction.
 
-**Nav pattern:** White background (`--bg`), logo left, "Log in" link right, no CTA button. Matches Hometap's mobile app pattern. Do not re-add a CTA to the nav.
+**Nav pattern (pre-qual, screens 1–15):** White background (`--bg`), logo left, "Log in" link right, no CTA button. Do not re-add a CTA to the nav.
 
-**Purple-highlight pattern:** Use `<span style="color:var(--purple)">` to call out key dollar amounts or figures in headlines (e.g. `$600k` on screen-1). Do not apply to body copy or labels.
+**Nav pattern (application phase, screens 16–29):** Hamburger icon (`#navHamburger`, `.nav-hamburger`) with red notification dot (`.nav-notif-dot`) appears left; "Log in" link hides. `goTo()` handles the toggle automatically. Do not restore "Log in" on application screens.
 
-**Social proof pattern:** Trustpilot proof card used as a compact footnote above the CTA on entry/landing screens. Layout (top to bottom): logo row (green star icon + "Trustpilot" wordmark in `#191919`), star blocks row (five 16px green square stars + rating text), short italic quote, reviewer name only. Card: `border: 1px solid var(--border)`, `border-radius: var(--radius)`, `padding: 10px 14px`. All text at footnote scale (11–13px). Do not expand this into a featured testimonial section.
+**Purple-highlight pattern:** Use `<span style="color:var(--purple)">` to call out key dollar amounts or figures in headlines. Do not apply to body copy or labels.
 
-**CTA pattern:** `.screen-cta` is `position: fixed; bottom: 0` on mobile. On desktop, it switches to `position: sticky; bottom: 0` inside the `.phone-inner` scroll container (required for the phone frame wrapper). Button inside is capped at `max-width: 580px; margin: 0 auto`. Mobile screen container has `padding-bottom: 120px` to prevent content hiding behind the fixed bar. Do not revert to in-flow CTAs.
+**Social proof pattern:** Trustpilot proof card used as a compact footnote above the CTA on entry/landing screens. Card: `border: 1px solid var(--border)`, `border-radius: var(--radius)`, `padding: 10px 14px`. All text at footnote scale (11–13px). Do not expand into a featured testimonial section.
 
-**Results screen pattern:** No hero card — content sits on white, amount in `--purple`. CTA copy is always "Get my $[amount] →" (dynamic). Two pills: "No monthly payments" (static) + use-case goal label (dynamic from `goalPillLabels` map in `renderResults()`). Next Steps has no card border.
+**CTA pattern:** `.screen-cta` is `position: fixed; bottom: 0` on mobile. On desktop, `position: sticky; bottom: 0` inside `.phone-inner`. Button capped at `max-width: 580px; margin: 0 auto`. Mobile screen container has `padding-bottom: 120px`. Do not revert to in-flow CTAs.
 
-**Screen-6 dark pattern:** Screen-6 uses a full-bleed `--purple-section` background via `.is-dark-screen` class toggled on `body` by `goTo()`. No `.hei-hero` card — content sits directly on the dark surface. Quote card uses `background: rgba(255,255,255,0.08)`. CTA bar background matches. Desktop outer frame stays `#1a1a1a` (scoped via `@media max-width: 640px`). Do not add cards or white backgrounds to this screen.
+**Results screen pattern (screen-14):** No hero card — content sits on white, amount in `--purple`. CTA copy is always "Get my $[amount] →" (dynamic). Two pills: "No monthly payments" (static) + use-case goal label (dynamic). Next Steps has no card border.
+
+**Dashboard pattern (screen-16):** Uses `.dashboard-card` layout. No `.screen-cta` — buttons embedded in cards. Progress bar resets to 0% on `goTo(16)`. `renderDashboard()` runs on `goTo(16)` and updates the main card in-place when `appSubmitted = true`.
+
+**Screen-6 dark pattern:** Full-bleed `--purple-section` background via `.is-dark-screen` class toggled by `goTo()`. No `.hei-hero` card — content sits directly on the dark surface. Quote card uses `background: rgba(255,255,255,0.08)`. Do not add cards or white backgrounds to this screen.
 
 ### Use case options
 
@@ -101,7 +86,7 @@ Win rows (highlighted green for HEI advantage) are defined per use case in the J
 
 - **File structure:** Flat. Everything is in `prototype/index.html`. Do not split into multiple files.
 - **Naming:** `camelCase` for JS variables/functions; `kebab-case` for CSS classes; descriptive screen IDs (`screen-1`, `screen-2`, etc.)
-- **JS data object:** All use-case-specific content lives in the `useCases` const at the top of the `<script>` block — `header`, `subtext`, `author`, `review` per use case key for screen-6, plus any future comparison text, highlighted rows, and benefit cards. Keep this as the single source of truth; do not hardcode content directly in HTML.
+- **JS data object:** All use-case-specific content lives in the `useCases` const at the top of the `<script>` block. Keep this as the single source of truth; do not hardcode content directly in HTML.
 - **No external libraries:** No jQuery, no chart libraries, no animation libraries. Vanilla only.
 - **Accessibility floor:** Semantic HTML, WCAG AA contrast, `alt` on images, `aria-label` on interactive elements.
 
@@ -109,17 +94,17 @@ Win rows (highlighted green for HEI advantage) are defined per use case in the J
 
 These are binding for every screen. Apply before writing or editing any copy or interaction pattern.
 
-1. **Minimum copy.** Every word must earn its place. If a sentence can be cut without losing meaning, cut it. No eyebrows that restate the title, no subtitles that repeat the eyebrow.
+1. **Minimum copy.** Every word must earn its place. No eyebrows that restate the title, no subtitles that repeat the eyebrow.
 
 2. **Minimalist design.** Prefer space and clarity over decoration. No extra visual layers, badges, or embellishments unless they communicate something the user needs to act on.
 
-3. **Copy concise and scannable.** Use plain, direct language. Lead with the most important word. Avoid filler phrases like "Here's how," "Based on your goal," or "We'll show you."
+3. **Copy concise and scannable.** Use plain, direct language. Lead with the most important word. Avoid filler phrases.
 
-4. **Single-select auto-advances.** Steps 2, 3, 4, and 7 (screen-3, screen-2, screen-4, screen-8) auto-advance on tap after 280ms (enough for visual confirmation). No separate "Continue" button on any selection screen. Do not add a confirm step.
+4. **Single-select auto-advances.** Pre-qual selection screens and application yes/no screens (19–26) auto-advance on tap after 280ms. No separate "Continue" button on any selection screen.
 
-5. **Progress indicator is a single full-width thin line** (`3px`, `--primary` fill, `--primary-mid` track). No step dots, no labels. Advances proportionally across all 14 screens via the `pct` map in JS. Nav is logo left + Log in right — no CTA, no extra elements.
+5. **Progress indicator is a single full-width thin line** (`3px`, `--primary` fill, `--primary-mid` track). No step dots, no labels. Resets to 0% at dashboard (screen-16).
 
-6. **CTAs always above the fold.** `.screen-cta` is `position: fixed; bottom: 0` on mobile; `position: sticky; bottom: 0` on desktop (inside the phone frame). Mobile screen container has `padding-bottom: 120px` to prevent content hiding behind the bar.
+6. **CTAs always above the fold.** `.screen-cta` is `position: fixed; bottom: 0` on mobile; `position: sticky; bottom: 0` on desktop.
 
 ---
 
@@ -127,12 +112,12 @@ These are binding for every screen. Apply before writing or editing any copy or 
 
 ### The anti-drift ritual
 
-**Before any change that touches CSS or visual markup, re-read Section 2 Locked Decisions.** If a proposed change would use a color, font, spacing value, or radius not in the design system, surface the conflict explicitly: "This would use a color not in the locked palette — want to add it to Section 2, or find an alternative within the existing tokens?" Do not silently apply off-system values.
+**Before any change that touches CSS or visual markup, re-read Section 2 Locked Decisions.** If a proposed change would use a color, font, spacing value, or radius not in the design system, surface the conflict explicitly. Do not silently apply off-system values.
 
 ### Model routing
 
 - **Sonnet by default** — styling tweaks, new use-case content, JS logic changes, bug fixes
-- **Escalate to Opus** — only for: redesigning the information hierarchy across screens, major architectural changes to the JS state machine, or resolving conflicts that touch multiple locked decisions
+- **Escalate to Opus** — only for: redesigning information hierarchy across screens, major architectural changes to the JS state machine, or resolving conflicts that touch multiple locked decisions
 
 ### Skills to invoke
 
@@ -144,7 +129,7 @@ These are binding for every screen. Apply before writing or editing any copy or 
 
 Always confirm before:
 
-- Adding a new screen beyond the 14 defined
+- Adding a new screen beyond the 29 defined
 - Changing the use case option labels (they must match Hometap's homepage)
 - Changing any hex color in Section 2
 - Splitting `index.html` into multiple files
@@ -167,11 +152,11 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ### What I'm building right now
 
-14-screen pre-qual flow + exit screen, demo-ready end-to-end. Session 10: Results screen (screen-14) fully redesigned — dark hero card removed, plain white header with `--purple` amount; CTA is dynamic ("Get my $X →"); two pills: "No monthly payments" + dynamic use-case goal label (e.g. "Perfect for a reno"). Next Steps card border removed. Social proof quote added then removed per preference.
+Full 29-screen prototype (14 pre-qual + 14 application + 1 exit), demo-ready end-to-end. Session 11: Added complete application phase — Dashboard (screen-16) through Accept Terms & Submit (screen-29). Progress bar resets to 0% at dashboard and advances to 100% at Terms. After submit, returns to dashboard in submitted state. Nav switches to app-phase mode (hamburger + notification dot, Log In hidden) on screens 16+.
 
 ### Known issues / things on fire
 
-- iPhone 13 viewport (390×844) not yet validated — scroll check still needed on screen-6 (dark hero) and screen-15 (2FA). Screen-14 now fits cleanly above the fold.
+- iPhone 13 viewport (390×844) not yet validated for application screens (16–29). Priority: screen-27 (Employment, two-field layout) and screen-29 (Terms, above-fold fit).
 - Loading screen (screen-13) resets on browser back-nav — acceptable for prototype.
 
 ### Open questions / decisions pending
@@ -197,4 +182,4 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ---
 
-*Last updated: 2026-05-26 (session 10)*
+*Last updated: 2026-05-27 (session 11)*

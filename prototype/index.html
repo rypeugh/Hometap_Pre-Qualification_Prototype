@@ -475,6 +475,112 @@
       .screen-cta { position: sticky; bottom: 0; left: unset; right: unset; width: 100%; }
     }
 
+
+    /* ── DASHBOARD ───────────────────────────────────────── */
+    .dashboard-estimate {
+      margin-bottom: 20px; padding-top: 4px;
+    }
+    .dashboard-estimate-label {
+      font-size: 11px; font-weight: 600; color: var(--text-light);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .dashboard-estimate-amount {
+      font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--text);
+    }
+    .dashboard-section-title {
+      font-size: 13px; font-weight: 600; color: var(--text-light);
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .dashboard-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 16px; margin-bottom: 12px;
+    }
+    .dashboard-card-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+    }
+    .dashboard-card-icon {
+      width: 36px; height: 36px; border-radius: 8px; background: var(--primary-light);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary); font-size: 16px;
+    }
+    .dashboard-card-icon.success { background: #ECFDF5; color: #059669; }
+    .dashboard-card-meta {
+      font-size: 12px; color: var(--text-light); display: flex; align-items: center; gap: 4px;
+    }
+    .dashboard-card-title {
+      font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;
+    }
+    .dashboard-card-sub {
+      font-size: 13px; color: var(--text-sub); line-height: 1.5; margin-bottom: 14px;
+    }
+    .dashboard-card.secondary { background: #FAFAFA; }
+    .dashboard-card .btn-primary { width: 100%; }
+    .btn-outline-primary {
+      display: block; width: 100%; padding: 13px 16px; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; border: 1.5px solid var(--primary); color: var(--primary);
+      background: transparent; transition: background 0.15s; text-align: center;
+    }
+    .btn-outline-primary:hover { background: var(--primary-light); }
+
+    /* ── SSN INPUT ───────────────────────────────────────── */
+    .ssn-input-wrap { display: flex; align-items: center; gap: 8px; }
+    .ssn-input-wrap .form-input { flex: 1; letter-spacing: 0.1em; }
+    .btn-ssn-toggle {
+      flex-shrink: 0; background: none; border: none; color: var(--primary);
+      font-size: 13px; font-weight: 600; cursor: pointer; padding: 0 4px;
+    }
+    .security-note {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 12px; color: var(--text-light); line-height: 1.5;
+      margin-top: 12px; padding: 10px 12px;
+      background: #F5F8FF; border-radius: var(--radius-sm);
+    }
+    .security-note i { color: var(--primary); margin-top: 1px; flex-shrink: 0; }
+
+    /* ── TERMS ───────────────────────────────────────────── */
+    .terms-checkbox-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0; border-bottom: 1px solid var(--border); margin-bottom: 12px;
+    }
+    .terms-checkbox-row input[type="checkbox"] {
+      width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px;
+      accent-color: var(--primary); cursor: pointer;
+    }
+    .terms-checkbox-label {
+      font-size: 12px; font-weight: 600; color: var(--text);
+    }
+    .terms-list { padding-left: 18px; margin: 0 0 80px; }
+    .terms-list li {
+      font-size: 11px; color: var(--text-sub); line-height: 1.5; margin-bottom: 7px;
+    }
+    .terms-list a { color: var(--purple); text-decoration: none; }
+    .terms-list a:hover { text-decoration: underline; }
+
+    /* ── YES/NO CHOICE (application screens) ────────────── */
+    .yesno-list .choice-card .choice-left { font-size: 16px; font-weight: 500; }
+    /* Tighter title on Terms screen so everything fits above fold */
+    #screen-29 .screen-title { font-size: 22px; margin-bottom: 4px; }
+
+    /* ── MAILING ADDRESS REVEAL ──────────────────────────── */
+    .mailing-custom { display: none; margin-top: 20px; }
+    .mailing-custom.visible { display: block; }
+
+
+    /* ── NAV HAMBURGER (app phase) ───────────────────────── */
+    .nav-hamburger {
+      background: none; border: none; cursor: pointer;
+      color: var(--text); font-size: 20px; padding: 4px 6px;
+      position: relative; flex-shrink: 0; line-height: 1;
+      display: none; /* hidden until app phase */
+    }
+    .nav-notif-dot {
+      position: absolute; top: 3px; right: 2px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #EF4444; border: 1.5px solid #fff;
+      pointer-events: none;
+    }
+
   </style>
 </head>
 
@@ -484,6 +590,10 @@
 
   <nav class="nav">
     <div class="nav-inner">
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" onclick="return false;">
+        <i class="fa-solid fa-bars"></i>
+        <span class="nav-notif-dot"></span>
+      </button>
       <a class="logo" href="#" aria-label="Hometap home">
         <img src="hometap-logo.svg" alt="Hometap"
           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
@@ -918,7 +1028,309 @@
       </div>
 
       <div class="screen-cta">
-        <button class="btn-primary" id="resultCta" onclick="alert('Application flow — coming soon')">Complete my application →</button>
+        <button class="btn-primary" id="resultCta" onclick="goTo(16)">Complete my application →</button>
+      </div>
+    </div>
+
+
+
+    <!-- ═══ SCREEN 16: DASHBOARD ═══ -->
+    <div class="screen" id="screen-16">
+      <div class="dashboard-estimate">
+        <div class="dashboard-estimate-label">Estimated max. investment amount</div>
+        <div class="dashboard-estimate-amount" id="dashboardAmount">—</div>
+      </div>
+
+      <div class="dashboard-section-title">Next steps</div>
+
+      <div class="dashboard-card" id="dashboardAppCard">
+        <div class="dashboard-card-header">
+          <div class="dashboard-card-icon" id="dashboardAppIcon"><i class="fa-solid fa-pen"></i></div>
+          <div class="dashboard-card-meta"><i class="fa-regular fa-clock"></i>&nbsp;5 minutes</div>
+        </div>
+        <div class="dashboard-card-title" id="dashboardAppTitle">Finish your application</div>
+        <div class="dashboard-card-sub" id="dashboardAppSub">To prepare your official estimate, we need to know more about you and your home.</div>
+        <button class="btn-primary" id="dashboardAppBtn" onclick="goTo(17)">Go to application →</button>
+      </div>
+
+
+    </div>
+
+
+    <!-- ═══ SCREEN 17: MARITAL STATUS ═══ -->
+    <div class="screen" id="screen-17">
+      <button class="btn-back" onclick="goTo(16)">← Back</button>
+      <h2 class="screen-title">What is your <span class="accent">marital status?</span></h2>
+
+      <div class="form-group">
+        <label class="form-label">Marital status</label>
+        <select class="form-input" id="maritalStatusSelect" onchange="onMaritalChange()" aria-label="Marital status">
+          <option value="">Select one…</option>
+          <option value="single">Single</option>
+          <option value="married">Married</option>
+          <option value="domestic_partnership">Domestic Partnership</option>
+          <option value="separated">Separated</option>
+          <option value="divorced">Divorced</option>
+          <option value="widowed">Widowed</option>
+        </select>
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="maritalCta" onclick="submitMaritalStatus()" disabled>Continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 18: MAILING ADDRESS ═══ -->
+    <div class="screen" id="screen-18">
+      <button class="btn-back" onclick="goTo(17)">← Back</button>
+      <h2 class="screen-title" id="mailingTitle">Is this your <span class="accent">mailing address?</span></h2>
+
+      <div class="choice-list yesno-list" id="mailingYesNo">
+        <div class="choice-card" id="mailingYesCard" onclick="selectMailingAnswer('yes', this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" id="mailingNoCard" onclick="selectMailingAnswer('no', this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+
+      <div class="mailing-custom" id="mailingCustomWrap">
+        <div class="address-wrap">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Mailing address</label>
+            <input class="form-input" type="text" id="mailingAddressInput"
+              placeholder="Start typing your address…" autocomplete="off" aria-label="Mailing address" />
+          </div>
+          <div class="autocomplete-list" id="mailingAutocompleteList"></div>
+        </div>
+      </div>
+
+      <div class="screen-cta" id="mailingCta" style="display:none">
+        <button class="btn-primary" id="mailingCtaBtn" onclick="submitMailingAddress()" disabled>Continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 19: BANKRUPTCY ═══ -->
+    <div class="screen" id="screen-19">
+      <button class="btn-back" onclick="goTo(18)">← Back</button>
+      <h2 class="screen-title">Have you had a <span class="accent">bankruptcy</span> in the last 10 years?</h2>
+      <div class="choice-list yesno-list">
+        <div class="choice-card" onclick="selectYesNo('bankruptcy','yes',20,this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectYesNo('bankruptcy','no',20,this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 20: FELONY ═══ -->
+    <div class="screen" id="screen-20">
+      <button class="btn-back" onclick="goTo(19)">← Back</button>
+      <h2 class="screen-title">Have you been <span class="accent">convicted of a felony</span> in the last 10 years?</h2>
+      <div class="choice-list yesno-list">
+        <div class="choice-card" onclick="selectYesNo('felony','yes',21,this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectYesNo('felony','no',21,this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 21: PRE-FORECLOSURE NOTICE ═══ -->
+    <div class="screen" id="screen-21">
+      <button class="btn-back" onclick="goTo(20)">← Back</button>
+      <h2 class="screen-title">Have you received a <span class="accent">pre-foreclosure notice</span> for a property you owned in the last 10 years?</h2>
+      <div class="choice-list yesno-list">
+        <div class="choice-card" onclick="selectYesNo('preForeclosureNotice','yes',22,this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectYesNo('preForeclosureNotice','no',22,this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 22: PRE-FORECLOSURE SALE ═══ -->
+    <div class="screen" id="screen-22">
+      <button class="btn-back" onclick="goTo(21)">← Back</button>
+      <h2 class="screen-title">Have you completed a <span class="accent">pre-foreclosure sale or short sale</span> on a property in the last 10 years?</h2>
+      <div class="choice-list yesno-list">
+        <div class="choice-card" onclick="selectYesNo('preForeclosureSale','yes',23,this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectYesNo('preForeclosureSale','no',23,this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 23: TITLE TRANSFER ═══ -->
+    <div class="screen" id="screen-23">
+      <button class="btn-back" onclick="goTo(22)">← Back</button>
+      <h2 class="screen-title">Have you <span class="accent">transferred title</span> to any property in lieu of foreclosure in the last 10 years?</h2>
+      <div class="choice-list yesno-list">
+        <div class="choice-card" onclick="selectYesNo('titleTransfer','yes',24,this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectYesNo('titleTransfer','no',24,this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 24: CO-BORROWER ON TITLE ═══ -->
+    <div class="screen" id="screen-24">
+      <button class="btn-back" onclick="goTo(23)">← Back</button>
+      <h2 class="screen-title" id="coBorrowerTitle">Is anyone else listed on the <span class="accent">title?</span></h2>
+      <p class="screen-sub">Each person listed on the title must be added as an applicant.</p>
+      <div class="choice-list yesno-list">
+        <div class="choice-card" onclick="selectYesNo('coBorrower','yes',25,this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectYesNo('coBorrower','no',25,this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 25: TITLE IN TRUST ═══ -->
+    <div class="screen" id="screen-25">
+      <button class="btn-back" onclick="goTo(24)">← Back</button>
+      <h2 class="screen-title" id="titleTrustTitle">Is the property title <span class="accent">held in a trust?</span></h2>
+      <div class="choice-list yesno-list">
+        <div class="choice-card" onclick="selectYesNo('titleInTrust','yes',26,this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectYesNo('titleInTrust','no',26,this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 26: MORTGAGES / LIENS ═══ -->
+    <div class="screen" id="screen-26">
+      <button class="btn-back" onclick="goTo(25)">← Back</button>
+      <h2 class="screen-title" id="liensTitle">Are there any <span class="accent">outstanding mortgages or liens?</span></h2>
+      <div class="choice-list yesno-list">
+        <div class="choice-card" onclick="selectYesNo('liens','yes',27,this)">
+          <div class="choice-left">Yes</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+        <div class="choice-card" onclick="selectYesNo('liens','no',27,this)">
+          <div class="choice-left">No</div>
+          <div class="choice-radio"><span class="choice-check">✓</span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 27: EMPLOYMENT ═══ -->
+    <div class="screen" id="screen-27">
+      <button class="btn-back" onclick="goTo(26)">← Back</button>
+      <h2 class="screen-title" id="employmentTitle">Can you share some <span class="accent">employment details?</span></h2>
+
+      <div class="form-group">
+        <label class="form-label">Employment Status</label>
+        <select class="form-input" id="employmentTypeSelect" onchange="onEmploymentChange()" aria-label="Employment status">
+          <option value="">Select one…</option>
+          <option value="fulltime">Full-time employed</option>
+          <option value="selfemployed">Self-employed</option>
+          <option value="parttime">Part-time employed</option>
+          <option value="retired">Retired</option>
+          <option value="unemployed">Unemployed</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Total Annual Income</label>
+        <div class="input-prefix-wrap">
+          <span class="input-prefix">$</span>
+          <input class="form-input input-with-prefix" type="text" inputmode="numeric"
+            id="incomeInput" placeholder="0" aria-label="Total annual income" />
+        </div>
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="employmentCta" onclick="submitEmployment()" disabled>Continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 28: SOCIAL SECURITY NUMBER ═══ -->
+    <div class="screen" id="screen-28">
+      <button class="btn-back" onclick="goTo(27)">← Back</button>
+      <h2 class="screen-title">What is your <span class="accent">social security number?</span></h2>
+      <p class="screen-sub">This information is required to perform a credit check so we can underwrite your application.</p>
+
+      <div class="form-group">
+        <label class="form-label">Social Security Number</label>
+        <div class="ssn-input-wrap">
+          <input class="form-input" type="password" inputmode="numeric" id="ssnInput"
+            placeholder="●●●-●●-●●●●" maxlength="11" aria-label="Social security number" />
+          <button class="btn-ssn-toggle" type="button" id="ssnToggle" onclick="toggleSSNVisibility()">Show</button>
+        </div>
+      </div>
+
+      <div class="security-note">
+        <i class="fa-solid fa-lock"></i>
+        <span>256-bit SSL encryption. Your SSN is used only for identity verification and is never stored in plain text.</span>
+      </div>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="ssnCta" onclick="submitSSN()" disabled>Continue →</button>
+      </div>
+    </div>
+
+
+    <!-- ═══ SCREEN 29: ACCEPT TERMS AND SUBMIT ═══ -->
+    <div class="screen" id="screen-29">
+      <button class="btn-back" onclick="goTo(28)">← Back</button>
+      <h2 class="screen-title">Accept Terms <span class="accent">and Submit</span></h2>
+
+      <div class="terms-checkbox-row">
+        <input type="checkbox" id="termsCheck" onchange="toggleTermsCheck()" aria-label="Accept terms" />
+        <label class="terms-checkbox-label" for="termsCheck">By checking this box:</label>
+      </div>
+
+      <ul class="terms-list">
+        <li>I authorize Hometap to obtain information from credit bureaus, including a full credit inquiry (commonly referred to as a "hard inquiry") that may impact my credit score, consistent with Hometap's <a href="#">Credit Authorization Policy</a>.</li>
+        <li>I authorize Hometap to verify any information contained in this application at any time, from any available source including a background check.</li>
+        <li>I attest that I have read and agree to Hometap's <a href="#">Terms of Use</a>, <a href="#">Privacy Policy</a>, <a href="#">Consent to Electronic Communications and Disclosures</a>, and <a href="#">Sharing of Information Disclosure</a>.</li>
+        <li>I agree that Hometap may call or text me at the telephone number provided in this application using automated systems regarding my application, and that data rates may apply.</li>
+        <li>I acknowledge that I have reviewed all information related to me, and that information, as well as any other information I have provided in the application, is accurate and truthful. I further acknowledge that, to the extent I have provided information about other applicants, I am authorized to provide that information, and that information is accurate and truthful to the best of my knowledge.</li>
+        <li>I understand that submitting an application does not imply a commitment from Hometap to invest.</li>
+      </ul>
+
+      <div class="screen-cta">
+        <button class="btn-primary" id="submitCta" onclick="submitApplication()" disabled>Submit Application →</button>
       </div>
     </div>
 
@@ -989,9 +1401,18 @@
     let userPhone       = '';
     let userEmail       = '';
     let qualifiedAmount = 0;
+    let userMaritalStatus      = '';
+    let userMailingAddressSame = null;
+    let userMailingAddressCustom = '';
+    let appAnswers             = {};
+    let userEmploymentType     = '';
+    let userAnnualIncome       = '';
+    let userSSN                = '';
+    let appSubmitted           = false;
 
     // ── PROGRESS — 14 screens ─────────────────────────────
-    const pct = { 1:7, 3:15, 4:23, 2:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 15:81, 12:85, 13:92, 14:100 };
+    const pct = { 1:7, 3:15, 4:23, 2:31, 6:39, 7:46, 8:54, 9:62, 10:69, 11:77, 15:81, 12:85, 13:92, 14:100,
+               16:0, 17:7, 18:14, 19:21, 20:29, 21:36, 22:43, 23:50, 24:57, 25:64, 26:71, 27:79, 28:86, 29:100 };
 
     // ── NAVIGATION ─────────────────────────────────────────
     function goTo(n) {
@@ -1005,6 +1426,15 @@
       if (n === 6)  renderHEI();
       if (n === 14) renderResults();
       if (n === 15) { setTimeout(() => { const f = document.getElementById('otp0'); if (f) f.focus(); }, 120); }
+      if (n === 16) renderDashboard();
+      if (n === 18) initScreen18();
+      if (n === 24 || n === 25 || n === 26) renderAddressScreens();
+      if (n === 27) renderEmploymentTitle();
+      const ham = document.getElementById('navHamburger');
+      const login = document.querySelector('.nav-login');
+      const isAppPhase = n >= 16;
+      if (ham) ham.style.display = isAppPhase ? 'flex' : 'none';
+      if (login) login.style.display = isAppPhase ? 'none' : '';
     }
 
     function goToExit() {
@@ -1300,6 +1730,183 @@
 
     }
 
+
+    // ── SCREEN 16: DASHBOARD ──────────────────────────────
+    function renderDashboard() {
+      const amt = qualifiedAmount > 0 ? formatCurrency(qualifiedAmount) : '—';
+      document.getElementById('dashboardAmount').textContent = amt;
+
+      if (appSubmitted) {
+        const card  = document.getElementById('dashboardAppCard');
+        const icon  = document.getElementById('dashboardAppIcon');
+        const title = document.getElementById('dashboardAppTitle');
+        const sub   = document.getElementById('dashboardAppSub');
+        const btn   = document.getElementById('dashboardAppBtn');
+        card.style.borderLeft = '4px solid #059669';
+        icon.className = 'dashboard-card-icon success';
+        icon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        title.textContent = 'Application submitted';
+        sub.textContent   = 'Your application is in review. We\'ll be in touch within 1–2 business days.';
+        btn.textContent   = 'Application submitted ✓';
+        btn.disabled      = true;
+        btn.style.opacity = '0.65';
+        btn.onclick       = null;
+      }
+    }
+
+    // ── SCREENS 24–26: INJECT PROPERTY ADDRESS ────────────
+    function renderAddressScreens() {
+      const addr  = userAddress || 'your property';
+      const short = addr.split(',')[0];
+      const map = {
+        'coBorrowerTitle': 'Is anyone else listed on the title for <span class="accent">' + short + '?</span>',
+        'titleTrustTitle': 'Is the property title for <span class="accent">' + short + '</span> held in a trust?',
+        'liensTitle':      'Are there any outstanding mortgages or liens on <span class="accent">' + short + '?</span>'
+      };
+      for (const [id, html] of Object.entries(map)) {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = html;
+      }
+    }
+
+    // ── SCREEN 17: MARITAL STATUS ─────────────────────────
+    function onMaritalChange() {
+      const val = document.getElementById('maritalStatusSelect').value;
+      document.getElementById('maritalCta').disabled = !val;
+    }
+    function submitMaritalStatus() {
+      userMaritalStatus = document.getElementById('maritalStatusSelect').value;
+      goTo(18);
+    }
+
+    // ── SCREEN 18: MAILING ADDRESS ────────────────────────
+    function initScreen18() {
+      // Inject address into heading
+      if (userAddress) {
+        const short = userAddress.split(',')[0];
+        document.getElementById('mailingTitle').innerHTML =
+          'Is <span class="accent">' + short + '</span> your mailing address?';
+      }
+      // Reset card state
+      document.querySelectorAll('#mailingYesNo .choice-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById('mailingCustomWrap').classList.remove('visible');
+      document.getElementById('mailingCta').style.display = 'none';
+      document.getElementById('mailingAddressInput').value = '';
+      document.getElementById('mailingCtaBtn').disabled = true;
+      // Mock autocomplete
+      const input = document.getElementById('mailingAddressInput');
+      const list  = document.getElementById('mailingAutocompleteList');
+      const mocks = ['123 Oak St, Austin TX','456 Maple Ave, Boston MA','789 Pine Rd, Denver CO','101 Elm Blvd, Phoenix AZ','202 Birch Lane, Seattle WA'];
+      input.oninput = () => {
+        const q = input.value.trim();
+        document.getElementById('mailingCtaBtn').disabled = q.length < 3;
+        if (q.length < 2) { list.classList.remove('open'); list.innerHTML = ''; return; }
+        const hits = mocks.filter(a => a.toLowerCase().includes(q.toLowerCase()));
+        list.innerHTML = hits.map(a => '<div class="autocomplete-item" onclick="selectMailingAuto(\'' + a + '\')">' + a + '</div>').join('');
+        list.classList.toggle('open', hits.length > 0);
+      };
+    }
+    function selectMailingAuto(address) {
+      document.getElementById('mailingAddressInput').value = address;
+      document.getElementById('mailingAutocompleteList').classList.remove('open');
+      document.getElementById('mailingCtaBtn').disabled = false;
+    }
+    function selectMailingAnswer(val, card) {
+      document.querySelectorAll('#mailingYesNo .choice-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      if (val === 'yes') {
+        userMailingAddressSame = true;
+        userMailingAddressCustom = userAddress;
+        setTimeout(() => goTo(19), 280);
+      } else {
+        userMailingAddressSame = false;
+        document.getElementById('mailingCustomWrap').classList.add('visible');
+        document.getElementById('mailingCta').style.display = '';
+      }
+    }
+    function submitMailingAddress() {
+      userMailingAddressCustom = document.getElementById('mailingAddressInput').value;
+      if (!userMailingAddressCustom) return;
+      goTo(19);
+    }
+
+    // ── SCREENS 19–26: YES/NO SHARED HANDLER ─────────────
+    function selectYesNo(key, val, nextScreen, card) {
+      const list = card.closest('.choice-list');
+      list.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      appAnswers[key] = val;
+      setTimeout(() => goTo(nextScreen), 280);
+    }
+
+    // ── SCREEN 27: EMPLOYMENT ─────────────────────────────
+    function renderEmploymentTitle() {
+      const el = document.getElementById('employmentTitle');
+      if (el && userFirstName) {
+        el.innerHTML = 'Can you share some employment details about <span class="accent">' + userFirstName + '?</span>';
+      }
+    }
+    function onEmploymentChange() {
+      const type   = document.getElementById('employmentTypeSelect').value;
+      const income = document.getElementById('incomeInput').value.replace(/\D/g, '');
+      document.getElementById('employmentCta').disabled = !(type && income);
+    }
+    function setupEmployment() {
+      const incomeEl = document.getElementById('incomeInput');
+      incomeEl.addEventListener('input', () => {
+        const digits = incomeEl.value.replace(/\D/g, '');
+        incomeEl.value = digits ? Number(digits).toLocaleString() : '';
+        const type = document.getElementById('employmentTypeSelect').value;
+        document.getElementById('employmentCta').disabled = !(type && digits);
+      });
+      incomeEl.addEventListener('blur', () => {
+        const digits = incomeEl.value.replace(/\D/g, '');
+        if (digits) incomeEl.value = '$' + Number(digits).toLocaleString();
+      });
+      incomeEl.addEventListener('focus', () => {
+        incomeEl.value = incomeEl.value.replace(/[\$,]/g, '');
+      });
+    }
+    function submitEmployment() {
+      userEmploymentType = document.getElementById('employmentTypeSelect').value;
+      userAnnualIncome   = document.getElementById('incomeInput').value;
+      goTo(28);
+    }
+
+    // ── SCREEN 28: SSN ────────────────────────────────────
+    function setupSSN() {
+      const input = document.getElementById('ssnInput');
+      const cta   = document.getElementById('ssnCta');
+      input.addEventListener('input', () => {
+        let digits = input.value.replace(/\D/g, '').slice(0, 9);
+        let fmt = digits;
+        if (digits.length > 5)      fmt = digits.slice(0,3) + '-' + digits.slice(3,5) + '-' + digits.slice(5);
+        else if (digits.length > 3) fmt = digits.slice(0,3) + '-' + digits.slice(3);
+        input.value = fmt;
+        cta.disabled = digits.length < 9;
+      });
+    }
+    function toggleSSNVisibility() {
+      const input  = document.getElementById('ssnInput');
+      const toggle = document.getElementById('ssnToggle');
+      if (input.type === 'password') { input.type = 'text';     toggle.textContent = 'Hide'; }
+      else                           { input.type = 'password'; toggle.textContent = 'Show'; }
+    }
+    function submitSSN() {
+      userSSN = document.getElementById('ssnInput').value;
+      goTo(29);
+    }
+
+    // ── SCREEN 29: TERMS AND SUBMIT ───────────────────────
+    function toggleTermsCheck() {
+      const checked = document.getElementById('termsCheck').checked;
+      document.getElementById('submitCta').disabled = !checked;
+    }
+    function submitApplication() {
+      appSubmitted = true;
+      goTo(16);
+    }
+
     // ── INIT ───────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
       setupAddress();
@@ -1308,6 +1915,8 @@
       setupPhone();
       setupEmail();
       setupOtp();
+      setupEmployment();
+      setupSSN();
     });
   </script>
 
