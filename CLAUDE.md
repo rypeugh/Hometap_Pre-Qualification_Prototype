@@ -46,7 +46,7 @@ This prototype intervenes **between stage 1 and 2** with a 14-screen pre-qual fl
 | 11 | screen-15 | **2FA Verification** — 6-digit OTP, auto-advances on completion |
 | 12 | screen-12 | **Email** — manual entry + Google/Apple social auth options |
 | 13 | screen-13 | **Loading** — 4 items, auto-advances after ~3.8s |
-| 14 | screen-14 | **Results** — dynamic amount + urgency-reactive callback copy |
+| 14 | screen-14 | **Results** — plain white header, `--purple` amount, dynamic CTA ("Get my $X →"), two pills (No monthly payments + use-case goal label), manager card, borderless next steps |
 
 **Exit screen (screen-exit):** Investment property ineligible — graceful dead-end with return home.
 
@@ -73,6 +73,8 @@ Full token spec is in [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md). All valu
 **Social proof pattern:** Trustpilot proof card used as a compact footnote above the CTA on entry/landing screens. Layout (top to bottom): logo row (green star icon + "Trustpilot" wordmark in `#191919`), star blocks row (five 16px green square stars + rating text), short italic quote, reviewer name only. Card: `border: 1px solid var(--border)`, `border-radius: var(--radius)`, `padding: 10px 14px`. All text at footnote scale (11–13px). Do not expand this into a featured testimonial section.
 
 **CTA pattern:** `.screen-cta` is `position: fixed; bottom: 0` on mobile. On desktop, it switches to `position: sticky; bottom: 0` inside the `.phone-inner` scroll container (required for the phone frame wrapper). Button inside is capped at `max-width: 580px; margin: 0 auto`. Mobile screen container has `padding-bottom: 120px` to prevent content hiding behind the fixed bar. Do not revert to in-flow CTAs.
+
+**Results screen pattern:** No hero card — content sits on white, amount in `--purple`. CTA copy is always "Get my $[amount] →" (dynamic). Two pills: "No monthly payments" (static) + use-case goal label (dynamic from `goalPillLabels` map in `renderResults()`). Next Steps has no card border.
 
 **Screen-6 dark pattern:** Screen-6 uses a full-bleed `--purple-section` background via `.is-dark-screen` class toggled on `body` by `goTo()`. No `.hei-hero` card — content sits directly on the dark surface. Quote card uses `background: rgba(255,255,255,0.08)`. CTA bar background matches. Desktop outer frame stays `#1a1a1a` (scoped via `@media max-width: 640px`). Do not add cards or white backgrounds to this screen.
 
@@ -165,11 +167,11 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ### What I'm building right now
 
-14-screen pre-qual flow + exit screen, demo-ready end-to-end. Session 9: navigation reordered (urgency now step 3, use case step 4), and screen-6 rebuilt as a full dark-screen personalized HEI interstitial — header, sub-text, and social proof quote all swap dynamically based on use case selection via the `useCases` const.
+14-screen pre-qual flow + exit screen, demo-ready end-to-end. Session 10: Results screen (screen-14) fully redesigned — dark hero card removed, plain white header with `--purple` amount; CTA is dynamic ("Get my $X →"); two pills: "No monthly payments" + dynamic use-case goal label (e.g. "Perfect for a reno"). Next Steps card border removed. Social proof quote added then removed per preference.
 
 ### Known issues / things on fire
 
-- iPhone 13 viewport (390×844) not yet validated — scroll check needed on screen-6 (dark hero), screen-14 (results), and screen-15 (2FA) before demo.
+- iPhone 13 viewport (390×844) not yet validated — scroll check still needed on screen-6 (dark hero) and screen-15 (2FA). Screen-14 now fits cleanly above the fold.
 - Loading screen (screen-13) resets on browser back-nav — acceptable for prototype.
 
 ### Open questions / decisions pending
@@ -195,4 +197,4 @@ Surface conflicts explicitly. Name the specific locked decision being violated a
 
 ---
 
-*Last updated: 2026-05-26 (session 9)*
+*Last updated: 2026-05-26 (session 10)*

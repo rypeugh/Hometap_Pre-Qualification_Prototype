@@ -315,31 +315,75 @@
 
     /* ── SCREEN 14: RESULTS ──────────────────────────────── */
     .result-hero {
-      background: linear-gradient(135deg, var(--purple-section) 0%, var(--purple-dark) 100%);
-      border-radius: var(--radius-xl); padding: 36px 28px; text-align: center; margin-bottom: 24px;
+      text-align: center; padding: 24px 0 20px; margin-bottom: 16px;
     }
-    .result-eyebrow {
-      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-      color: rgba(255,255,255,0.65); margin-bottom: 12px;
-    }
-    .result-label { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .result-eyebrow { font-size: 22px; margin-bottom: 10px; color: var(--text); }
+    .result-label { font-size: 15px; color: var(--text-sub); margin-bottom: 8px; font-weight: 500; }
     .result-amount {
       font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 700;
-      color: #fff; line-height: 1.1; margin-bottom: 8px;
+      color: var(--purple); line-height: 1.1; margin-bottom: 6px;
     }
-    .result-sub { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
-    .result-next {
+    .result-sub { font-size: 12px; color: var(--text-sub); line-height: 1.5; }
+    .result-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+    .result-badge {
+      font-size: 11px; font-weight: 600; color: var(--primary);
+      background: var(--primary-mid); border-radius: 20px; padding: 4px 10px;
+    }
+    .result-goal-tag {
+      font-size: 13px; color: var(--text-sub); margin-bottom: 14px;
+      padding: 10px 14px; background: var(--card-bg);
+      border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .result-goal-tag .tag-check { color: var(--primary); font-weight: 700; margin-right: 4px; }
+    .manager-urgency-note { font-size: 12px; color: var(--primary); font-weight: 600; margin-top: 8px; }
+
+
+    /* Investment Manager card */
+    .manager-card {
+      display: flex; align-items: flex-start; gap: 14px;
       background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
+      border-radius: var(--radius); padding: 18px; margin-bottom: 14px;
     }
-    .result-next-title { font-size: 13px; font-weight: 700; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-    .result-next-text { font-size: 15px; color: var(--text); line-height: 1.6; font-weight: 500; }
-    .result-equity-note {
-      font-size: 13px; color: var(--text-sub); line-height: 1.6;
-      padding: 14px 16px; background: var(--primary-light);
-      border-radius: var(--radius-sm); margin-bottom: 16px;
-      border-left: 3px solid var(--primary);
+    .manager-photo-wrap {
+      flex-shrink: 0; width: 76px; height: 76px; border-radius: 50%;
+      overflow: hidden; border: 2px solid var(--primary-mid);
     }
+    .manager-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .manager-initials {
+      display: none; width: 100%; height: 100%; background: var(--purple-section);
+      align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #fff;
+    }
+    .manager-info { flex: 1; min-width: 0; }
+    .manager-assigned {
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--text-sub); margin-bottom: 2px;
+    }
+    .manager-name {
+      font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+      color: var(--text); line-height: 1.2;
+    }
+    .manager-title { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 4px; }
+    .manager-location { font-size: 12px; color: var(--text-sub); margin-bottom: 10px; }
+    .manager-location i { font-size: 11px; margin-right: 3px; }
+    .manager-bio { font-size: 13px; color: var(--text-sub); line-height: 1.55; }
+    .manager-bio strong { color: var(--text); }
+
+    /* Next steps */
+    .result-steps {
+      padding: 4px 0 8px; margin-bottom: 14px;
+    }
+    .result-steps-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--text-sub); margin-bottom: 14px;
+    }
+    .result-step { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%; background: var(--primary);
+      color: #fff; font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .step-text { font-size: 15px; color: var(--text); font-weight: 500; }
 
     /* ── EXIT SCREEN ─────────────────────────────────────── */
     .exit-hero {
@@ -806,7 +850,7 @@
     <div class="screen" id="screen-13">
       <div class="loading-header">
         <div class="loading-spinner-wrap"><div class="spinner"></div></div>
-        <h2 class="screen-title" style="text-align:center;font-size:24px">Calculating your <span class="accent">investment estimate…</span></h2>
+        <h2 class="screen-title" style="text-align:center;font-size:24px">Calculating <span class="accent" id="loadingName">your</span> estimate…</h2>
       </div>
 
       <div class="loading-items">
@@ -833,25 +877,48 @@
     <!-- ═══ SCREEN 14: RESULTS ═══ -->
     <div class="screen" id="screen-14">
       <div class="result-hero">
-        <div class="result-eyebrow">Your estimate</div>
+        <div class="result-eyebrow">🎉 Congratulations<span id="resultName"></span>!</div>
         <div class="result-label">You qualify for up to</div>
         <div class="result-amount" id="resultAmount">—</div>
-        <div class="result-sub">Based on your home's estimated value and current mortgage balance</div>
+        <div class="result-sub">Based on your home's equity</div>
+        <div class="result-badges">
+          <span class="result-badge">No monthly payments</span>
+          <span class="result-badge" id="resultGoalPill"></span>
+        </div>
       </div>
 
-      <div class="result-equity-note">
-        In exchange for your investment, Hometap receives a share of your home's future appreciation — no monthly payment required. You settle when you sell or after 10 years.
+      <div class="manager-card">
+        <div class="manager-photo-wrap">
+          <img src="ryan.jpeg" alt="Ryan" class="manager-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="manager-initials">RP</div>
+        </div>
+        <div class="manager-info">
+          <div class="manager-assigned">You've been assigned</div>
+          <div class="manager-name">Ryan</div>
+          <div class="manager-title">Investment Manager</div>
+          <div class="manager-location"><i class="fa-solid fa-location-dot"></i> Seattle, WA</div>
+          <div class="manager-bio">He has supported <strong>324 homeowners</strong> just like you. If you have any questions, just reach out directly.</div>
+        </div>
       </div>
 
-      <div class="result-next">
-        <div class="result-next-title">What happens next</div>
-        <div class="result-next-text" id="callbackText">A Hometap specialist will reach out within the next 5 minutes to walk you through next steps.</div>
+      <div class="result-steps">
+        <div class="result-steps-title">Next steps</div>
+        <div class="result-step">
+          <div class="step-num">1</div>
+          <div class="step-text">Complete your application</div>
+        </div>
+        <div class="result-step">
+          <div class="step-num">2</div>
+          <div class="step-text">Provide documents</div>
+        </div>
+        <div class="result-step">
+          <div class="step-num">3</div>
+          <div class="step-text">Sign &amp; collect money</div>
+        </div>
       </div>
 
-      <div class="tp-footer">
-        <span class="tp-logo" style="font-size:13px">Trustpilot</span>
-        <span class="tp-stars">★★★★★</span>
-        <span>Excellent · 4.8 / 5</span>
+      <div class="screen-cta">
+        <button class="btn-primary" id="resultCta" onclick="alert('Application flow — coming soon')">Complete my application →</button>
       </div>
     </div>
 
@@ -1164,6 +1231,8 @@
       userEmail = emailVal;
       qualifiedAmount = calculateQualification();
       goTo(13);
+      const loadNameEl = document.getElementById('loadingName');
+      loadNameEl.textContent = userFirstName ? userFirstName + '’s' : 'your';
 
       const items = ['load1', 'load2', 'load3', 'load4'];
       const dots  = ['dot1',  'dot2',  'dot3',  'dot4'];
@@ -1211,11 +1280,24 @@
 
     // ── SCREEN 14: RESULTS ────────────────────────────────
     function renderResults() {
+      // Amount + name
       document.getElementById('resultAmount').textContent = formatCurrency(qualifiedAmount);
-      const urgent = new Set(['today', 'week']);
-      document.getElementById('callbackText').textContent = urgent.has(selectedUrgency)
-        ? 'A Hometap specialist will reach out within the next 5 minutes to walk you through next steps.'
-        : 'A Hometap specialist will reach out within 1 business day to walk you through next steps.';
+      document.getElementById('resultName').textContent = userFirstName ? ' ' + userFirstName : '';
+
+      // Dynamic CTA copy
+      document.getElementById('resultCta').textContent = 'Get my ' + formatCurrency(qualifiedAmount) + ' →';
+
+      // Goal pill — short label matched to use case
+      const goalPillLabels = {
+        debt:       'Perfect for debt payoff',
+        renovation: 'Perfect for a reno',
+        lifeevent:  'Perfect for life events',
+        education:  'Perfect for education',
+        business:   'Perfect for your business',
+        retirement: 'Perfect for retirement'
+      };
+      document.getElementById('resultGoalPill').textContent = goalPillLabels[selectedKey] || goalPillLabels['debt'];
+
     }
 
     // ── INIT ───────────────────────────────────────────────
